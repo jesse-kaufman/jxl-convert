@@ -1,9 +1,9 @@
 import { baseDir, jxlDir, origDir } from "./config/config.js";
-import createOutputDirs from "./modules/outputDirs.js";
 import formatSize from "./modules/formatSize.js";
 import getFolderSize from "get-folder-size";
 import log from "./modules/logger.js";
 import processSrcDir from "./modules/filePath.js";
+import setupOutputDirs from "./modules/setupDirs.js";
 
 if (baseDir == null) {
   console.error("Base directory not provided.");
@@ -11,7 +11,7 @@ if (baseDir == null) {
 }
 
 // First, create the output directories
-createOutputDirs();
+setupOutputDirs();
 
 // Then, process the directory
 processSrcDir(baseDir);

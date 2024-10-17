@@ -1,6 +1,6 @@
 import { baseDir, jxlDir, origDir } from "../config/config.js";
 import convert from "./imageConvert.js";
-import { createDir } from "./outputDirs.js";
+import { createDir } from "./setupDirs.js";
 import fs from "fs";
 import log from "./logger.js";
 import path from "path";
