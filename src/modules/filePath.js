@@ -1,6 +1,6 @@
 import { baseDir, jxlDir, origDir } from "../config/config.js";
 import convert from "./imageConvert.js";
-import { createDir } from "./setup.js";
+import { createDir } from "./outputDirs.js";
 import fs from "fs";
 import log from "./logger.js";
 import path from "path";
@@ -13,7 +13,7 @@ const getInFilePath = (dir, file) => path.normalize(`${dir}/${file}`);
 
 const getOrigPath = (inFilePath) => inFilePath.replace(baseDir, `${origDir}/`);
 
-const process = (dir) => {
+const processSrcDir = (dir) => {
   if (dir === jxlDir || dir === origDir) return;
 
   log.notice(`Processing directory: ${dir}...`);

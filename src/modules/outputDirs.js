@@ -1,4 +1,4 @@
-import config from "./config.js";
+import { jxlDir, origDir } from "../config/config.js";
 import fs from "fs";
 import log from "./logger.js";
 
@@ -20,7 +20,5 @@ export function createDir(dir) {
 }
 
 export const createOutputDirs = () => {
-  const { jxlDir, origDir } = config;
-
   [jxlDir, origDir].map((dir) => createDir(dir));
 };
