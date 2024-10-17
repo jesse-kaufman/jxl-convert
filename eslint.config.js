@@ -65,7 +65,15 @@ const config = [
       "no-unneeded-ternary": "error",
       "no-unreachable-loop": "error",
       "no-unused-expressions": "warn",
-      "no-use-before-define": "warn",
+      "no-use-before-define": [
+        "warn",
+        {
+          functions: false,
+          classes: true,
+          variables: true,
+          allowNamedExports: true,
+        },
+      ],
       "no-useless-constructor": "error",
       "no-useless-rename": "error",
       "no-useless-return": "error",
