@@ -1,11 +1,9 @@
-import config from "./config.js";
+import { baseDir, jxlDir, origDir } from "../config/config.js";
 import convert from "./imageConvert.js";
 import { createDir } from "./setup.js";
 import fs from "fs";
 import log from "./logger.js";
 import path from "path";
-
-const { baseDir, jxlDir, origDir } = config;
 
 const getOutPath = (inFilePath) => inFilePath.replace(baseDir, `${jxlDir}/`);
 
