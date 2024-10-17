@@ -1,4 +1,4 @@
-import { GB, MB } from "modules/constants.js";
+import { GB, MB } from "../config/constants.js";
 import { padding, places } from "../config/config.js";
 
 /**
