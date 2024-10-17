@@ -3,7 +3,7 @@ import fs from "fs";
 import log from "./logger.js";
 
 export function createDir(dir) {
-  //log.info(`Creating ${dir} directory...`);
+  log.info(`Creating ${dir} directory...`);
 
   // Try to create the directory
   fs.mkdir(dir, (err) => {
@@ -11,7 +11,7 @@ export function createDir(dir) {
     if (err == null) return log.success(`${dir} created successfully`);
 
     // Directory already existed
-    if (err?.code === "EEXIST") return; //log.success(`${dir} already exists`);
+    if (err?.code === "EEXIST") return log.success(`${dir} already exists`);
 
     // An error occurred
     log.error("Create dir", err);
