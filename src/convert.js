@@ -1,7 +1,6 @@
 import config from "./modules/config.js";
 import { createOutputDirs } from "./modules/setup.js";
 import getFolderSize from "get-folder-size";
-import process from "./modules/filePath.js";
 import log from "./modules/logger.js";
 
 const KB = 1024;
@@ -21,7 +20,7 @@ if (baseDir == null) {
 createOutputDirs();
 
 // Then, process the directory
-process(baseDir);
+processSrcDir(baseDir);
 
 const formatSize = (bytes) => {
   let size = bytes / MB;

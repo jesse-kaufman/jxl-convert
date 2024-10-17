@@ -70,4 +70,4 @@ function processPath(dir, file) {
   });
 }
 
-export default process;
+export default processSrcDir;
