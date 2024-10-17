@@ -1,20 +1,12 @@
-import { jxlDir, origDir } from "../config/config.js";
 import fs from "fs";
 import log from "./logger.js";
 
 /**
- * Sets up output dirs for JXL and original files
- */
-const setupOutputDirs = () => {
-  [jxlDir, origDir].map((dir) => createDir(dir));
-};
-
-/**
- * Helper function to create a directory if it doesn't exist already.
+ * Creates a directory if it doesn't exist already.
  * @param {string} dir The directory to create
  */
-export function createDir(dir) {
-  log.info(`Creating ${dir} directory...`);
+const createDir = (dir) => {
+  log.debug(`Creating ${dir} directory...`);
 
   // Try to create the directory
 
@@ -29,6 +21,6 @@ export function createDir(dir) {
     log.error("Create dir", err);
     process.exit(1);
   });
-}
+};
 
-export default setupOutputDirs;
+export default createDir;

@@ -2,9 +2,9 @@
   "name": "jxl-convert",
   "version": "0.1.0",
   "description": "Converts image files to JPEG XL format",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/convert.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
