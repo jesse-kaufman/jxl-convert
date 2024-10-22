@@ -1,4 +1,3 @@
-/* eslint-disable capitalized-comments */
 /* eslint-disable no-magic-numbers */
 import pluginJs from "@eslint/js";
 import jest from "eslint-plugin-jest";
