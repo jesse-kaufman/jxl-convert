@@ -12,6 +12,8 @@ import { getInFilePath } from "./utils/path-utils.js";
  * Runs the program
  */
 export default () => {
+  log.debug("Running");
+
   // Create output directories if needed
   initOutputDirs();
 
