@@ -10,8 +10,8 @@ const { baseDir, jxlDir, origDir, padding, places } = config;
  * Prints a summary of information about the completed conversion process
  */
 export default async () => {
-  const origDirSize = await getFolderSize.loose(origDir);
-  const jxlDirSize = await getFolderSize.loose(jxlDir);
+  const origDirSize = origDir ? await getFolderSize.loose(origDir) : 0;
+  const jxlDirSize = jxlDir ? await getFolderSize.loose(jxlDir) : 0;
   const totalSaved = origDirSize - jxlDirSize;
 
   log.info("\n\n");
