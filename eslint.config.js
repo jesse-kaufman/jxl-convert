@@ -105,7 +105,7 @@ const config = [
       //"sort-keys": "error",
       camelcase: ["warn", { properties: "never" }],
       complexity: ["warn", { max: 5 }],
-      curly: ["error", "multi", "consistent"],
+      curly: ["error", "multi-line", "consistent"],
       eqeqeq: ["error", "smart"],
 
       "simple-import-sort/imports": "error",
