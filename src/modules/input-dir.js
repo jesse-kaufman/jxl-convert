@@ -25,39 +25,28 @@ import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
  * @returns {InputDir} - An input dir object
  */
 export default (dir) => {
-  // Setup input directory object with paths and contents
+  const outPath = getOutDirPath(dir);
+  const origPath = getOrigDirPath(dir);
+  const contents = getDirContents(dir);
 
+  // Setup input directory object with paths and contents
   const inputDir = {
     inPath: dir,
-    outPath: getOutDirPath(dir),
-    origPath: getOrigDirPath(dir),
-    contents: getDirContents(dir),
+    outPath,
+    origPath,
+    contents,
   };
 
   // Create directories inside JXL and "orig" dirs to mirror heirarchy of input dir
-  createDestDirs(inputDir);
+  createDir(outPath);
+  createDir(origPath);
 
   return inputDir;
 };
-
-/**
- * Creates the necessary directories in the output and "orig" paths to mirror the input directory structure.
- *
- * @param {Object} inputDir - An object containing paths for the output and "orig" directories.
- * @param {string} inputDir.outPath - The path to the output directory.
- * @param {string} inputDir.origPath - The path to the original directory.
- */
-function createDestDirs({ outPath, origPath }) {
-  // Mirror input directory structure in output and "orig" directories
-  createDir(outPath);
-  createDir(origPath);
-}
 
 /**
  * Helper function to get directory contents without needing to import fs in app
  * @param {string} dir The directory
  * @returns {Array<string>} The contents
  */
-function getDirContents(dir) {
-  return fs.readdirSync(dir);
-}
+const getDirContents = (dir) => fs.readdirSync(dir);
