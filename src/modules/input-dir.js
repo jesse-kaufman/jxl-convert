@@ -1,6 +1,6 @@
 /**
  * Input directory module
- *  @module input-dir
+ * @module input-dir
  */
 
 import { createDir, getDirContents } from "../utils/fs-utils.js";
