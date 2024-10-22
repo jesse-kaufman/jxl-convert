@@ -1,9 +1,9 @@
 /* eslint-disable capitalized-comments */
 /* eslint-disable no-magic-numbers */
-import globals from "globals";
-import jest from "eslint-plugin-jest";
 import pluginJs from "@eslint/js";
+import jest from "eslint-plugin-jest";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
+import globals from "globals";
 
 const config = [
   { ignores: ["**/node_modules/*", "**/public/js/*"] },
