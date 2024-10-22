@@ -15,9 +15,12 @@ export default (inFilePath, outFilePath) => {
 
   try {
     execSync(command);
-  } catch (error) {
-    log.error(`Error executing command: ${error.message}`);
-    throw error;
+  } catch (err) {
+    if (err instanceof Error) {
+      log.error(`Error executing ImageMagick: ${err.message}`);
+    }
+
+    throw err;
   }
 
   log.success("Finished successfully!");
