@@ -3,6 +3,7 @@
 import globals from "globals";
 import jest from "eslint-plugin-jest";
 import pluginJs from "@eslint/js";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 const config = [
   { ignores: ["**/node_modules/*", "**/public/js/*"] },
@@ -12,7 +13,10 @@ const config = [
     },
   },
   {
-    plugins: { jest },
+    plugins: {
+      jest,
+      "simple-import-sort": simpleImportSort,
+    },
   },
   pluginJs.configs.recommended,
   {
@@ -27,10 +31,17 @@ const config = [
       "default-case-last": "error",
       "default-param-last": "error",
       "dot-notation": "error",
-      //'func-style': ['error', 'expression'],
+      "func-style": [
+        "error",
+        "declaration",
+        {
+          allowArrowFunctions: true,
+          overrides: { namedExports: "expression" },
+        },
+      ],
       "grouped-accessor-pairs": "error",
       "guard-for-in": "error",
-      // "init-declarations": ["error", "never", { ignoreForLoopInit: true }],
+      "init-declarations": ["error", "always"],
       "max-depth": "error",
       "max-nested-callbacks": ["error", 3],
       "new-cap": "error",
@@ -38,7 +49,7 @@ const config = [
       "no-duplicate-imports": "error",
       "no-empty-function": "warn",
       "no-inner-declarations": "error",
-      // "no-invalid-this": "error",
+      "no-invalid-this": "error",
       "no-lone-blocks": "error",
       "no-lonely-if": "error",
       "no-loop-func": "error",
@@ -87,7 +98,7 @@ const config = [
       "prefer-template": "error",
       "require-atomic-updates": "warn",
       "require-await": "error",
-      "sort-imports": "error",
+      //"sort-imports": ["error"],
       "sort-vars": "error",
       "valid-typeof": "error",
       "vars-on-top": "error",
@@ -95,8 +106,11 @@ const config = [
       //"sort-keys": "error",
       camelcase: ["warn", { properties: "never" }],
       complexity: ["warn", { max: 5 }],
-      //curly: "warn",
+      curly: ["error", "multi", "consistent"],
       eqeqeq: ["error", "smart"],
+
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
     },
   },
 ];
