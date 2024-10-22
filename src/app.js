@@ -12,7 +12,7 @@ import { getInFilePath } from "./utils/path-utils.js";
  * Runs the program
  */
 export default () => {
-  if (baseDir == null) {
+  if (baseDir === "") {
     console.error("Base directory not provided.");
     process.exit(1);
   }
@@ -96,11 +96,6 @@ function processFile(filePath) {
 }
 
 function initOutputDirs() {
-  if (baseDir === "") {
-    console.error("Base directory not provided.");
-    process.exit(1);
-  }
-
   console.log("Initializing output directories.");
   createDir(jxlDir);
   createDir(origDir);
