@@ -19,7 +19,6 @@ export default (inFilePath, outFilePath) => {
     if (err instanceof Error) {
       log.error(`Error executing ImageMagick: ${err.message}`);
     }
-
     throw err;
   }
 
