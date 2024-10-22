@@ -4,9 +4,9 @@
  */
 import path from "path";
 
-import { archiveOrigFile } from "../../utils/fs-utils.js";
 import log from "../../utils/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
+import archiveOrigFile from "./modules/archive.js";
 import convertImage from "./modules/convert.js";
 
 /**
