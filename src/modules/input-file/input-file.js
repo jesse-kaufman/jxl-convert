@@ -1,3 +1,7 @@
+/**
+ * Input file module.
+ * @module input-file
+ */
 import path from "path";
 
 import { archiveOrigFile } from "../../utils/fs-utils.js";
@@ -11,6 +15,7 @@ import convertImage from "./modules/convert.js";
  * @typedef {Object} InputFile
  * @property {string} inPath - The input path.
  * @property {boolean} isValidFileType - Indicates whether the file type is valid.
+ * @property {string} outFileName - The name of the output file.
  * @property {string} outPath - The output directory path.
  * @property {string} outFilePath - Full path to the output file.
  * @property {string} origPath - Path to "orig" directory.
@@ -27,40 +32,32 @@ import convertImage from "./modules/convert.js";
 export default (filePath) => {
   const outPath = getOutDirPath(path.dirname(filePath));
   const outFileName = getOutFileName(filePath);
+  const outFilePath = path.join(outPath, outFileName);
+  const origPath = getOrigDirPath(path.dirname(filePath));
 
-  /**
-   * @property {string} inPath - The path to the input file.
-   * @property {boolean} isValidFileType - A boolean indicating whether the file type is valid.
-   * @property {string} outFileName - The output file name based on the input file name.
-   * @property {string} outPath - The output directory path.
-   * @property {string} outFilePath - The full path to the output file.
-   * @property {string} origPath - The original file directory path.
-   */
-  const inputFile = {
+  return {
     inPath: filePath,
     isValidFileType: isValidFileType(filePath),
     outFileName,
     outPath,
-    outFilePath: path.join(outPath, outFileName),
-    origPath: getOrigDirPath(path.dirname(filePath)),
-    /** Method to convert file to JXL */
+    outFilePath,
+    origPath,
+    /** Converts file to JXL */
     convert: function () {
       convertImage(this.inPath, this.outFilePath);
     },
-    /** Method to archive original file in "orig" directory */
+    /** Archives original file in "orig" directory */
     archiveOrigFile: function () {
       log.debug(`Archiving file: ${this.inPath}`);
       archiveOrigFile(this.inPath, this.origPath);
     },
   };
-
-  return inputFile;
 };
 
 /**
  * Gets output filename for a given input filename
- * @param {string} inFile Input filename
- * @returns {string} Output filename
+ * @param {string} inFile - Input filename
+ * @returns {string} - Output filename
  */
 function getOutFileName(inFile) {
   const basename = path.basename(inFile, path.extname(inFile));
@@ -69,8 +66,8 @@ function getOutFileName(inFile) {
 
 /**
  * Checks whether file extension is listed as a valid file type
- * @param {string} filePath Path to file
- * @returns {boolean} True if file type is valid, otherwise false
+ * @param {string} filePath - Path to file
+ * @returns {boolean} - True if file type is valid, otherwise false
  */
 function isValidFileType(filePath) {
   return [".jpg", ".jpeg", ".png", ".webp", ".heic"].includes(
