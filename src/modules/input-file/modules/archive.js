@@ -5,18 +5,18 @@ import log from "../../../utils/logger.js";
 
 /**
  * Helper function to archive original files into the "orig" dir
- * @param {string} filePath
- * @param {string} origPath
+ * @param {string} src - Source path
+ * @param {string} dest - Destination path
  */
-export default (filePath, origPath) => {
+export default (src, dest) => {
   // Copy original file to the "orig" directory
-  fs.rename(filePath, path.join(origPath, path.basename(filePath)), (err) => {
+  fs.rename(src, path.join(dest, path.basename(src)), (err) => {
     if (err) {
       log.error(err.message);
       process.exit(1);
     }
 
     // Log success message if the file was successfully copied to the "orig" directory
-    log.success(`Copied original file to ${origPath}`);
+    log.success(`Copied original file to ${dest}`);
   });
 };
