@@ -19,6 +19,13 @@ import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
  */
 
 /**
+ * Gets directory contents
+ * @param {string} dir The directory
+ * @returns {Array<string>} The contents
+ */
+const getDirContents = (dir) => fs.readdirSync(dir);
+
+/**
  * Sets up an input directory object with properties and methods for processing.
  *
  * @param {string} dir - The path to the input directory.
@@ -43,10 +50,3 @@ export default (dir) => {
 
   return inputDir;
 };
-
-/**
- * Helper function to get directory contents without needing to import fs in app
- * @param {string} dir The directory
- * @returns {Array<string>} The contents
- */
-const getDirContents = (dir) => fs.readdirSync(dir);
