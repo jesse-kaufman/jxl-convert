@@ -17,15 +17,16 @@ export default () => {
     process.exit(1);
   }
 
-  log.debug("Running");
-
   // Create output directories if needed
+  log.debug("Initializing");
   initOutputDirs();
 
   // Recursively process the provided base directory
+  log.debug("Starting processing");
   processDir(baseDir);
 
   // Print summary of completed conversion process
+  log.debug("Printing summary");
   printSummary();
 };
 
