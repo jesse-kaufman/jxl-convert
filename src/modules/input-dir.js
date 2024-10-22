@@ -3,7 +3,9 @@
  * @module input-dir
  */
 
-import { createDir, getDirContents } from "../utils/fs-utils.js";
+import fs from "fs";
+
+import { createDir } from "../utils/fs-utils.js";
 import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
 
 /**
@@ -49,4 +51,13 @@ function createDestDirs({ outPath, origPath }) {
   // Mirror input directory structure in output and "orig" directories
   createDir(outPath);
   createDir(origPath);
+}
+
+/**
+ * Helper function to get directory contents without needing to import fs in app
+ * @param {string} dir The directory
+ * @returns {Array<string>} The contents
+ */
+function getDirContents(dir) {
+  return fs.readdirSync(dir);
 }

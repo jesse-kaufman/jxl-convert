@@ -23,10 +23,3 @@ export const createDir = (dir) => {
     process.exit(1);
   });
 };
-
-/**
- * Helper function to get directory contents without needing to import fs in app
- * @param {string} dir The directory
- * @returns {Array<string>} The contents
- */
-export const getDirContents = (dir) => fs.readdirSync(dir);
