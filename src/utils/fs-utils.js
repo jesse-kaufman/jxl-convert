@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 
 import log from "./logger.js";
 
@@ -31,19 +30,3 @@ export const createDir = (dir) => {
  * @returns {Array<string>} The contents
  */
 export const getDirContents = (dir) => fs.readdirSync(dir);
-
-/**
- * Helper function to archive original files into the "orig" dir
- * @param {string} filePath
- * @param {string} origPath
- */
-export const archiveOrigFile = (filePath, origPath) => {
-  // Copy original file to the "orig" directory
-  fs.rename(filePath, path.join(origPath, path.basename(filePath)), (err) => {
-    if (err) {
-      log.error(err.message);
-      process.exit(1);
-    }
-    log.success(`Copied original file to ${origPath}`);
-  });
-};
