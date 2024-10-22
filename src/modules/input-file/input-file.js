@@ -3,7 +3,7 @@ import path from "path";
 import { archiveOrigFile } from "../../utils/fs-utils.js";
 import log from "../../utils/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
-import convertImage from "./modules/convert-image.js";
+import convertImage from "./modules/convert.js";
 
 /**
  * Input file object.
