@@ -1,5 +1,6 @@
-import { baseDir, jxlDir, origDir } from "../config/config.js";
 import path from "path";
+
+import { baseDir, jxlDir, origDir } from "../config/config.js";
 
 /**
  * Gets normalized file path for a given directory and file
@@ -11,21 +12,11 @@ export const getInFilePath = (dir, file) =>
   path.normalize(path.join(dir, file));
 
 /**
- * Gets output filename for a given input filename
- * @param {string} inFile
- * @returns
- */
-export const getOutFileName = (inFile) => {
-  const basename = path.basename(inFile, path.extname(inFile));
-  return `${basename}.jxl`;
-};
-
-/**
  * Gets JXL output path for a given input path ([baseDir]/[jxlDir]/...)
  * @param {string} inFilePath
- * @returns
+ * @returns {string}
  */
-export const getOutPath = (inFilePath) =>
+export const getOutDirPath = (inFilePath) =>
   inFilePath.replace(baseDir, `${jxlDir}/`);
 
 /**
@@ -33,5 +24,5 @@ export const getOutPath = (inFilePath) =>
  * @param {string} inFilePath
  * @returns
  */
-export const getOrigPath = (inFilePath) =>
+export const getOrigDirPath = (inFilePath) =>
   inFilePath.replace(baseDir, `${origDir}/`);

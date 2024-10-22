@@ -14,4 +14,7 @@ export default {
   notice: (msg) => {
     console.info(`\x1b[34m${msg}\x1b[0m`);
   },
+  debug: (msg) => {
+    console.debug(`\x1b[36m${msg}\x1b[0m`);
+  },
 };

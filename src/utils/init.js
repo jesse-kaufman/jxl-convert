@@ -1,5 +1,5 @@
 import { baseDir, jxlDir, origDir } from "../config/config.js";
-import createDir from "./create-dir.js";
+import { createDir } from "./fs-utils.js";
 
 /**
  * Creates base output dirs for JXL and original files
