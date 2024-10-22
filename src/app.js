@@ -12,6 +12,11 @@ import { getInFilePath } from "./utils/path-utils.js";
  * Runs the program
  */
 export default () => {
+  if (baseDir == null) {
+    console.error("Base directory not provided.");
+    process.exit(1);
+  }
+
   log.debug("Running");
 
   // Create output directories if needed
