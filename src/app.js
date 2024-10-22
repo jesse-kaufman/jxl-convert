@@ -95,7 +95,7 @@ function processFile(filePath) {
 }
 
 function initOutputDirs() {
-  if (baseDir == null) {
+  if (baseDir === "") {
     console.error("Base directory not provided.");
     process.exit(1);
   }
