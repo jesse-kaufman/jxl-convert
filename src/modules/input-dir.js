@@ -1,18 +1,30 @@
+/**
+ * Input directory module
+ *  @module input-dir
+ */
+
 import { createDir, getDirContents } from "../utils/fs-utils.js";
 import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
 
 /**
- * Sets up input dir object with paths and contents
+ * Input dir object.
  *
- * @function
- * @name setupInputDir
- * @kind function
- * @param {string} dir
- * @returns {{ inPath: string; outPath: string; origPath: string; contents: string[]; }}
- * @exports
+ * @typedef {Object} InputDir
+ * @property {string} inPath - The input path.
+ * @property {string} outPath - The output path.
+ * @property {string} origPath - Path to "orig" directory.
+ * @property {Array<string>} contents - The contents of the directory.
  */
-export default function setupInputDir(dir) {
+
+/**
+ * Sets up an input directory object with properties and methods for processing.
+ *
+ * @param {string} dir - The path to the input directory.
+ * @returns {InputDir} - An input dir object
+ */
+export default (dir) => {
   // Setup input directory object with paths and contents
+
   const inputDir = {
     inPath: dir,
     outPath: getOutDirPath(dir),
@@ -24,7 +36,7 @@ export default function setupInputDir(dir) {
   createDestDirs(inputDir);
 
   return inputDir;
-}
+};
 
 /**
  * Creates the necessary directories in the output and "orig" paths to mirror the input directory structure.

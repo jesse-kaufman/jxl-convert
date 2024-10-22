@@ -3,12 +3,12 @@
  */
 import path from "path";
 
-// Base dir to be processed (sent via CLI arguments)
+/** Base dir to be processed (sent via CLI arguments) @const {string|null} */
 export const baseDir = process.argv[2] || null;
-// Output directory for JXL files
 
-// @var baseDir string 
+// Output directory for JXL files
 export const jxlDir = baseDir ? path.join(baseDir, "jxl") : null;
+
 // Destination directory for original files
 export const origDir = baseDir ? path.join(baseDir, "orig") : null;
 
