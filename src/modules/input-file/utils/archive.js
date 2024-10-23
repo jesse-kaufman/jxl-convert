@@ -1,12 +1,16 @@
+/**
+ * Utility to archive files.
+ * @module utils/archive
+ */
 import fs from "fs";
 import path from "path";
 
 import log from "../../../utils/logger.js";
 
 /**
- * Helper function to archive original files into the "orig" dir
- * @param {string} src - Source path
- * @param {string} dest - Destination path
+ * Archives original files into the "orig" dir.
+ * @param {string} src - Source path.
+ * @param {string} dest - Destination path.
  */
 export default (src, dest) => {
   // Copy original file to the "orig" directory
