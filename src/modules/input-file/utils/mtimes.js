@@ -57,7 +57,7 @@ export const getMTime = (filePath) => {
  * @param {string} path
  * @param {Date} mtime
  */
-export const setMTime = (path, mtime) => {
+function setMTime(path, mtime) {
   log.debug(`Changing modification time for ${path}...`);
 
   try {
@@ -75,4 +75,6 @@ export const setMTime = (path, mtime) => {
     // Exit app
     process.exit(1);
   }
-};
+
+  log.debug(`Modification time changed successfully.`);
+}
