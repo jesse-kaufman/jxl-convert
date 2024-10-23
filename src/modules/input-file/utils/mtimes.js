@@ -31,26 +31,26 @@ export const syncMTimes = (srcPath, destPath) => {
 
 /**
  * Gets the modification time for a given path
- * @param {string} filePath
- * @returns
+ * @param {string} path - Path to get the modification time for
+ * @returns {Date} - The modification time
  */
-export const getMTime = (filePath) => {
-  log.debug(`File: ${filePath}`);
+function getMTime(path) {
+  log.debug(`File: ${path}`);
 
   try {
     // Get the file stats and return the modification time
-    const stats = fs.statSync(filePath);
+    const stats = fs.statSync(path);
     log.debug(`Last modified date: ${stats.mtime}`);
     return stats?.mtime;
   } catch (err) {
     // Log error
-    const errMsg = `Error reading file: ${filePath}`;
+    const errMsg = `Error reading file: ${path}`;
     const details = err instanceof Error ? err.message : null;
     log.error(`${errMsg}${details}`);
     // Exit app
     process.exit(1);
   }
-};
+}
 
 /**
  * Sets the modification time for a given path
