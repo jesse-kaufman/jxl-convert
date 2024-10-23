@@ -30,11 +30,11 @@ export const getMTime = (filePath) => {
 };
 
 /**
- * Changes the modification time for a given path
+ * Sets the modification time for a given path
  * @param {string} path
  * @param {Date} mtime
  */
-export const changeMTime = (path, mtime) => {
+export const setMTime = (path, mtime) => {
   log.debug(`Changing modification time for ${path}...`);
 
   try {
