@@ -7,6 +7,29 @@ import fs from "fs";
 import log from "../../../utils/logger.js";
 
 /**
+ * Syncs the modification times of two files
+ * @param {string} srcPath - Path to the modification time source.
+ * @param {string} destPath - Path to the file to modify.
+ * @returns
+ */
+export const syncMTimes = (srcPath, destPath) => {
+  // Get the modification times of the two files
+  const srcMTime = getMTime(srcPath);
+  const destMTime = getMTime(destPath);
+
+  // If the modification times differ, update the out file modification
+  if (srcMTime.getTime() !== destMTime.getTime()) {
+    log.info("File modification times differ.");
+    // Set mtime on destination to the source mtime
+    setMTime(destPath, srcMTime);
+    return;
+  }
+
+  // If the modification times are the same, log a debug message
+  log.debug("File modification times are the same.");
+};
+
+/**
  * Gets the modification time for a given path
  * @param {string} filePath
  * @returns
