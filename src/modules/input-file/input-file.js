@@ -14,7 +14,7 @@ import { syncMTimes } from "./utils/mtimes.js";
  * Input file object.
  *
  * @typedef {Object} InputFile
- * @property {string} inPath - The input path.
+ * @property {string} filePath - The input path.
  * @property {boolean} isValidFileType - Indicates whether the file type is valid.
  * @property {string} outFileName - The name of the output file.
  * @property {string} outPath - The output directory path.
@@ -37,24 +37,24 @@ export default (filePath) => {
   const origPath = getOrigDirPath(path.dirname(filePath));
 
   return {
-    inPath: filePath,
+    filePath,
     isValidFileType: isValidFileType(filePath),
     outFileName,
     outPath,
     outFilePath,
     origPath,
     /** Converts file to JXL */
-    convert() {
-      log.debug(`Converting file: ${this.inPath}`);
+    async convert() {
+      log.debug(`Converting file: ${this.filePath}`);
       // Convert image to JXL
-      convertImage(this.inPath, this.outFilePath);
+      convertImage(this.filePath, this.outFilePath);
       // Sync modification time of new file with old file
-      syncMTimes(this.inPath, outFilePath);
+      await syncMTimes(this.filePath, this.outFilePath);
     },
     /** Archives original file in "orig" directory */
     archiveOrigFile() {
-      log.debug(`Archiving file: ${this.inPath}`);
-      archiveOrigFile(this.inPath, this.origPath);
+      log.debug(`Archiving file: ${this.filePath}`);
+      archiveOrigFile(this.filePath, this.origPath);
     },
   };
 };
