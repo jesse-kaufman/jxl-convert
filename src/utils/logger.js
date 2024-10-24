@@ -51,7 +51,7 @@ export default {
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
    */
-  debug: (msg, ...args) => {
+  debug(msg, ...args) {
     if (process.env.DEBUG) console.debug(`[DEBUG] ${msg}`, ...args);
   },
 };

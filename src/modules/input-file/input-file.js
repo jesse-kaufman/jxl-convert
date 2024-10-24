@@ -44,7 +44,7 @@ export default (filePath) => {
     outFilePath,
     origPath,
     /** Converts file to JXL */
-    convert: function () {
+    convert() {
       log.debug(`Converting file: ${this.inPath}`);
       // Convert image to JXL
       convertImage(this.inPath, this.outFilePath);
@@ -52,7 +52,7 @@ export default (filePath) => {
       syncMTimes(this.inPath, outFilePath);
     },
     /** Archives original file in "orig" directory */
-    archiveOrigFile: function () {
+    archiveOrigFile() {
       log.debug(`Archiving file: ${this.inPath}`);
       archiveOrigFile(this.inPath, this.origPath);
     },
