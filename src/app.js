@@ -11,7 +11,7 @@ import { getInFilePath } from "./utils/path-utils.js";
 /**
  * Runs the program
  */
-export default () => {
+const run = () => {
   if (baseDir === "") {
     console.error("Base directory not provided.");
     process.exit(1);
@@ -29,6 +29,7 @@ export default () => {
   log.debug("Printing summary");
   printSummary();
 };
+export default run;
 
 /**
  * Processes the given directory recursively.
