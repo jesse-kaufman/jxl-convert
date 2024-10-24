@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import fs from "fs";
 
 import { baseDir, jxlDir, origDir } from "./config/config.js";
@@ -14,6 +15,11 @@ import { getInFilePath } from "./utils/path-utils.js";
 const run = () => {
   if (baseDir === "") {
     console.error("Base directory not provided.");
+    process.exit(1);
+  }
+
+  if (!imageMagickExists()) {
+    console.error("ImageMagick not found. Please install it and try again.");
     process.exit(1);
   }
 
@@ -100,4 +106,18 @@ function initOutputDirs() {
   console.log("Initializing output directories.");
   createDir(jxlDir);
   createDir(origDir);
+}
+
+/**
+ * Check if ImageMagick is available
+ * @returns {boolean} - True if ImageMagick is available
+ */
+function imageMagickExists() {
+  try {
+    execSync("magick -version", { stdio: "ignore" });
+    return true;
+    // eslint-disable-next-line no-unused-vars
+  } catch (err) {
+    return false;
+  }
 }
