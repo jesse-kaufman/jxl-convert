@@ -18,8 +18,10 @@ export default (inFilePath, outFilePath) => {
   const command = `magick "${inFilePath}" -quality 80 "${outFilePath}"`;
 
   try {
+    // Execute ImageMagick command to convert the image to JXL
     execSync(command);
   } catch (err) {
+    // If an error occurred, log the error message and throw the error
     if (err instanceof Error) {
       log.error(`Error executing ImageMagick: ${err.message}`);
     }

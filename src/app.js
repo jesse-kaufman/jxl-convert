@@ -102,6 +102,9 @@ function processFile(filePath) {
   inputFile.archiveOrigFile();
 }
 
+/**
+ * Initializes the JXL and "orig" directories
+ */
 function initOutputDirs() {
   console.log("Initializing output directories.");
   createDir(jxlDir);
