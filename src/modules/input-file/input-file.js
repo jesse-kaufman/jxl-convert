@@ -8,6 +8,7 @@ import log from "../../utils/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
 import archiveOrigFile from "./utils/archive.js";
 import convertImage from "./utils/convert.js";
+import { syncMTimes } from "./utils/mtimes.js";
 
 /**
  * Input file object.
@@ -44,7 +45,11 @@ export default (filePath) => {
     origPath,
     /** Converts file to JXL */
     convert: function () {
+      log.debug(`Converting file: ${this.inPath}`);
+      // Convert image to JXL
       convertImage(this.inPath, this.outFilePath);
+      // Sync modification time of new file with old file
+      syncMTimes(this.inPath, outFilePath);
     },
     /** Archives original file in "orig" directory */
     archiveOrigFile: function () {
