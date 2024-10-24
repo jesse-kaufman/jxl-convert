@@ -19,6 +19,7 @@ export default (inFilePath, outFilePath) => {
 
   try {
     // Execute ImageMagick command to convert the image to JXL
+    log.debug(command);
     execSync(command);
   } catch (err) {
     // If an error occurred, log the error message and throw the error
