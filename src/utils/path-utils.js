@@ -16,13 +16,23 @@ export const getInFilePath = (dir, file) =>
  * @param {string} inFilePath
  * @returns {string}
  */
-export const getOutDirPath = (inFilePath) =>
-  inFilePath.replace(baseDir, `${jxlDir}/`);
+export const getOutDirPath = (inFilePath) => {
+  // If we're on the base directory, return jxlDir
+  if (`${inFilePath}/` === baseDir) return jxlDir;
+
+  // Otherwise, return jxlDir relative to the input path
+  return path.normalize(inFilePath.replace(baseDir, `${jxlDir}/`));
+};
 
 /**
  * Gets original file output path for a given input path ([baseDir]/[origDir]/...)
  * @param {string} inFilePath
  * @returns
  */
-export const getOrigDirPath = (inFilePath) =>
-  inFilePath.replace(baseDir, `${origDir}/`);
+export const getOrigDirPath = (inFilePath) => {
+  // If we're on the base directory, return origDir
+  if (`${inFilePath}/` === baseDir) return origDir;
+
+  // Otherwise, return jxlDir relative to the input path
+  return path.normalize(inFilePath.replace(baseDir, `${origDir}/`));
+};
