@@ -3,9 +3,11 @@
  * @module input-dir
  */
 
-import fs from "fs";
+import fsp from "node:fs/promises";
 
+import { baseDir } from "../config/config.js";
 import { createDir } from "../utils/fs-utils.js";
+import log from "../utils/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
 
 /**
@@ -21,20 +23,32 @@ import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
 /**
  * Gets directory contents
  * @param {string} dir The directory
- * @returns {Array<string>} The contents
+ * @returns {Promise<string[]>} The contents
  */
-const getDirContents = (dir) => fs.readdirSync(dir);
+const getDirContents = async (dir) => {
+  try {
+    return await fsp.readdir(dir);
+  } catch (err) {
+    // Log error
+    const errMsg = `Error reading directory: ${dir}`;
+    const details = err instanceof Error ? err.message : null;
+    log.error(`${errMsg}${details}`);
+
+    // Return empty array
+    return [];
+  }
+};
 
 /**
  * Sets up an input directory object with properties and methods for processing.
  *
  * @param {string} dir - The path to the input directory.
- * @returns {InputDir} - An input dir object
+ * @returns {Promise<InputDir>} - An input dir object
  */
-export default (dir) => {
+export default async (dir) => {
   const outPath = getOutDirPath(dir);
   const origPath = getOrigDirPath(dir);
-  const contents = getDirContents(dir);
+  const contents = await getDirContents(dir);
 
   // Setup input directory object with paths and contents
   const inputDir = {
@@ -44,9 +58,10 @@ export default (dir) => {
     contents,
   };
 
-  // Create directories inside JXL and "orig" dirs to mirror heirarchy of input dir
-  createDir(outPath);
-  createDir(origPath);
-
+  if (dir !== baseDir) {
+    // Create directories inside JXL and "orig" dirs to mirror heirarchy of input dir
+    createDir(outPath);
+    createDir(origPath);
+  }
   return inputDir;
 };

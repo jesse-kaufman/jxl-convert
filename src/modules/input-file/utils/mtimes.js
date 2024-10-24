@@ -2,7 +2,7 @@
  * Utilities for getting/setting file modification times.
  * @module utils/mtime
  */
-import fs from "fs";
+import fsp from "node:fs/promises";
 
 import log from "../../../utils/logger.js";
 
@@ -12,10 +12,10 @@ import log from "../../../utils/logger.js";
  * @param {string} destPath - Path to the file to modify.
  * @returns
  */
-export const syncMTimes = (srcPath, destPath) => {
+export const syncMTimes = async (srcPath, destPath) => {
   // Get the modification times of the two files
-  const srcMTime = getMTime(srcPath);
-  const destMTime = getMTime(destPath);
+  const srcMTime = await getMTime(srcPath);
+  const destMTime = await getMTime(destPath);
 
   // If the modification times differ, update the out file modification
   if (srcMTime.getTime() !== destMTime.getTime()) {
@@ -32,14 +32,14 @@ export const syncMTimes = (srcPath, destPath) => {
 /**
  * Gets the modification time for a given path
  * @param {string} path - Path to get the modification time for
- * @returns {Date} - The modification time
+ * @returns {Promise<Date>} - The modification time
  */
-function getMTime(path) {
+async function getMTime(path) {
   log.debug(`File: ${path}`);
 
   try {
     // Get the file stats and return the modification time
-    const stats = fs.statSync(path);
+    const stats = await fsp.stat(path);
     log.debug(`Last modified date: ${stats.mtime}`);
     return stats?.mtime;
   } catch (err) {
@@ -57,16 +57,16 @@ function getMTime(path) {
  * @param {string} path
  * @param {Date} mtime
  */
-function setMTime(path, mtime) {
+async function setMTime(path, mtime) {
+  let fd = null;
+
   log.debug(`Changing modification time for ${path}...`);
 
   try {
     // Open the file in read-write mode
-    const fd = fs.openSync(path, "r+");
+    fd = await fsp.open(path, "r+");
     // Set the new modification time for the file
-    fs.utimesSync(path, mtime, mtime);
-    // Close the file
-    fs.closeSync(fd);
+    await fsp.utimes(path, mtime, mtime);
   } catch (err) {
     // Log error
     const errMsg = `Error opening file: ${path}`;
@@ -74,6 +74,10 @@ function setMTime(path, mtime) {
     log.error(`${errMsg}${details}`);
     // Exit app
     process.exit(1);
+  } finally {
+    // Close the file
+    if (fd) fd.close();
+    log.debug(`Closed file: ${path}`);
   }
 
   log.debug(`Modification time changed successfully.`);

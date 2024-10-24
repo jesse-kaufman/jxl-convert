@@ -2,8 +2,8 @@
  * Utility to archive files.
  * @module utils/archive
  */
-import fs from "fs";
-import path from "path";
+import fsp from "node:fs/promises";
+import path from "node:path";
 
 import log from "../../../utils/logger.js";
 
@@ -12,15 +12,20 @@ import log from "../../../utils/logger.js";
  * @param {string} src - Source path.
  * @param {string} dest - Destination path.
  */
-export default (src, dest) => {
-  // Copy original file to the "orig" directory
-  fs.rename(src, path.join(dest, path.basename(src)), (err) => {
-    if (err) {
-      log.error(err.message);
-      process.exit(1);
-    }
+export default async (src, dest) => {
+  try {
+    // Copy original file to the "orig" directory
+    await fsp.rename(src, path.join(dest, path.basename(src)));
+  } catch (err) {
+    // Log error
+    const errMsg = `Error moving ${src} to ${dest}`;
+    const details = err instanceof Error ? err.message : null;
+    log.error(`${errMsg}${details}`);
 
-    // Log success message if the file was successfully copied to the "orig" directory
-    log.success(`Copied original file to ${dest}`);
-  });
+    // Exit app
+    process.exit(1);
+  }
+
+  // Log success message if the file was successfully copied to the "orig" directory
+  log.success(`Moved original file to ${dest}`);
 };
