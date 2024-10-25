@@ -43,14 +43,14 @@ export default run;
  * @param {string} dir Path to the directory
  * @returns {Object|void} Input directory object
  */
-function processDir(dir) {
+async function processDir(dir) {
   // Don't process base JXL or orig directories
   if (dir === jxlDir || dir === origDir) return;
 
   log.notice(`Processing directory: ${dir}...`);
 
   // Setup input directory object
-  const inputDir = setupInputDir(dir);
+  const inputDir = await setupInputDir(dir);
 
   // Walk through list of files and sub-directories
   inputDir.contents.map((contentItem) =>
