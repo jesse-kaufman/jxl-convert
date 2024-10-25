@@ -41,7 +41,6 @@ export default run;
  * Processes the given directory recursively.
  *
  * @param {string} dir Path to the directory
- * @returns {Object|void} Input directory object
  */
 async function processDir(dir) {
   // Don't process base JXL or orig directories
