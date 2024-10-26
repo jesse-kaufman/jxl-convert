@@ -47,25 +47,16 @@ async function getConfigOptions() {
   if (configFile === "") return {};
 
   try {
+    log.debug("Parsing config file...");
     const config = YAML.parse(configFile);
-    console.log("Config file options: ", config);
+    log.debug("Config file options: ", config);
+
     return config;
   } catch (err) {
     // Syntax error in config file
-    if (err instanceof SyntaxError) {
+    if (err instanceof Error) {
       log.error("Syntax error in config file:", err.message);
       process.exit(1);
-    }
-
-    // All other errors
-    if (err instanceof Error) {
-      // Skip non-ENOENT errors (file not found)
-      // @ts-ignore
-      if (err?.code !== "ENOENT") {
-        log.info("Unable to read config file:", err.message);
-      }
-    } else {
-      log.error("Error reading config file:", err);
     }
   }
 
