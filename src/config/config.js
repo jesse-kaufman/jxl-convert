@@ -31,7 +31,7 @@ export const validFileExts = configFileOpts.validFileExts || [
 
 /**
  * Configuration options
- * @typedef {Object} ConfigFileOpts
+ * @typedef {object} ConfigFileOpts
  * @property {number} [padding] - Number of spaces to pad file sizes in summary (default: 12).
  * @property {number} [places] - Number of places to round numbers in summary (default: 2).
  * @property {Array<string>} [validFileExts] - Array of valid file extensions.
@@ -63,6 +63,10 @@ async function getConfigOptions() {
   return {};
 }
 
+/**
+ * Reads configuration options from config file
+ * @returns {Promise<string>} - Contents of the config file.
+ */
 async function readConfigFile() {
   const configFile = "./jxl-convert.config.yaml";
 
