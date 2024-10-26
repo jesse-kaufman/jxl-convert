@@ -10,7 +10,7 @@ import log from "../../../utils/logger.js";
  * Syncs the modification times of two files.
  * @param {string} srcPath - Path to the modification time source.
  * @param {string} destPath - Path to the file to modify.
- * @returns
+ * @returns {Promise<undefined>}
  */
 export const syncMTimes = async (srcPath, destPath) => {
   // Get the modification times of the two files
@@ -54,8 +54,8 @@ async function getMTime(path) {
 
 /**
  * Sets the modification time for a given path.
- * @param {string} path
- * @param {Date} mtime
+ * @param {string} path - The path to set the modification time on.
+ * @param {Date} mtime - The modification time.
  */
 async function setMTime(path, mtime) {
   let fd = null;
