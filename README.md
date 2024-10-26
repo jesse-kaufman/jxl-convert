@@ -14,6 +14,7 @@ npm start [base_dir]
 
 ## To do
 
+- [ ] Make entire app asynchronous
 - [ ] Make options configurable
   - [ ] Optimization level
   - [ ] Path to ImageMagick binary in CLI arguments
