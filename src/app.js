@@ -9,33 +9,41 @@ import { createDir } from "./utils/fs-utils.js";
 import log from "./utils/logger.js";
 import { getInFilePath } from "./utils/path-utils.js";
 
-/**
- * Runs the program
- */
-const run = async () => {
-  if (baseDir === "") {
-    console.error("Base directory not provided.");
-    process.exit(1);
+export default class App {
+  constructor() {
+    this.inputDirs = [];
+    this.inputFileStats = [];
   }
 
-  if (!imageMagickExists()) {
-    console.error("ImageMagick not found. Please install it and try again.");
-    process.exit(1);
+  /**
+   * Runs the program
+   */
+  async run() {
+    if (baseDir === "") {
+      console.error("Base directory not provided.");
+      process.exit(1);
+    }
+
+    if (!imageMagickExists()) {
+      console.error("ImageMagick not found. Please install it and try again.");
+      process.exit(1);
+    }
+
+    // Create output directories if needed
+    log.debug("Initializing");
+    initOutputDirs();
+
+    // Recursively process the provided base directory
+    log.debug("Starting processing");
+    await processDir(baseDir);
+
+    // Print summary of completed conversion process
+    log.debug("Printing summary");
+    printSummary();
   }
 
-  // Create output directories if needed
-  log.debug("Initializing");
-  initOutputDirs();
-
-  // Recursively process the provided base directory
-  log.debug("Starting processing");
-  await processDir(baseDir);
-
-  // Print summary of completed conversion process
-  log.debug("Printing summary");
-  printSummary();
-};
-export default run;
+  async getConfig() {}
+}
 
 /**
  * Processes the given directory recursively.
