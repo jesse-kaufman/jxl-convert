@@ -12,7 +12,7 @@ import { getInFilePath } from "./utils/path-utils.js";
 /**
  * Runs the program
  */
-const run = () => {
+const run = async () => {
   if (baseDir === "") {
     console.error("Base directory not provided.");
     process.exit(1);
@@ -29,7 +29,7 @@ const run = () => {
 
   // Recursively process the provided base directory
   log.debug("Starting processing");
-  processDir(baseDir);
+  await processDir(baseDir);
 
   // Print summary of completed conversion process
   log.debug("Printing summary");
