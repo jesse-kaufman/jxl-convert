@@ -31,25 +31,6 @@ export const validFileExts = configFileOpts.validFileExts || [
 
 /**
  * Configuration options
- * @typedef {Object} Config
- * @property {string|null} baseDir - Base directory to be processed (sent via CLI arguments).
- * @property {string|null} jxlDir - Output directory for JXL files.
- * @property {string|null} origDir - Destination directory for original files.
- * @property {number} padding - Number of spaces to pad file sizes in summary (default: 12).
- * @property {number} places - Number of places to round numbers in summary (default: 2).
- * @property {Array<string>} validFileExts - Array of valid file extensions.
- */
-export default {
-  baseDir,
-  jxlDir,
-  origDir,
-  padding,
-  places,
-  validFileExts,
-};
-
-/**
- * Configuration options
  * @typedef {Object} ConfigFileOpts
  * @property {number} [padding] - Number of spaces to pad file sizes in summary (default: 12).
  * @property {number} [places] - Number of places to round numbers in summary (default: 2).
@@ -116,3 +97,22 @@ async function readConfigFile() {
 
   return "";
 }
+
+/**
+ * Configuration options
+ * @typedef {object} Config
+ * @property {string|null} baseDir - Base directory to be processed (sent via CLI arguments).
+ * @property {string|null} jxlDir - Output directory for JXL files.
+ * @property {string|null} origDir - Destination directory for original files.
+ * @property {number} padding - Number of spaces to pad file sizes in summary (default: 12).
+ * @property {number} places - Number of places to round numbers in summary (default: 2).
+ * @property {Array<string>} validFileExts - Array of valid file extensions.
+ */
+export default {
+  baseDir,
+  jxlDir,
+  origDir,
+  padding,
+  places,
+  validFileExts,
+};
