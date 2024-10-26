@@ -4,6 +4,7 @@
  */
 import path from "path";
 
+import { validFileExts } from "../../config/config.js";
 import log from "../../utils/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
 import archiveOrigFile from "./utils/archive.js";
@@ -75,7 +76,5 @@ function getOutFileName(inFile) {
  * @returns {boolean} - True if file type is valid, otherwise false
  */
 function isValidFileType(filePath) {
-  return [".jpg", ".jpeg", ".png", ".webp", ".heic"].includes(
-    path.extname(filePath).toLowerCase()
-  );
+  return validFileExts.includes(path.extname(filePath).toLowerCase());
 }
