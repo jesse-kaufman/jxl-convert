@@ -1,0 +1,6 @@
+validFileExts:
+  - .jpg
+  - .jpeg
+  - .png
+  - .webp
+  - .heic
