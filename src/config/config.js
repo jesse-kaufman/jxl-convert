@@ -1,30 +1,118 @@
+/* eslint-disable no-magic-numbers */
 /**
  * Configuration
  */
+import fsp from "fs/promises";
 import path from "path";
+import YAML from "yaml";
 
+import log from "../utils/logger.js";
+
+// Get configuration options from config file
+const configFileOpts = await getConfigOptions();
 /** Base dir to be processed (sent via CLI arguments) @const {string|null} */
 export const baseDir = process.argv[2] || "";
-
 // Output directory for JXL files
 export const jxlDir = path.join(baseDir, "jxl");
-
 // Destination directory for original files
 export const origDir = path.join(baseDir, "orig");
-
 // Number of spaces to pad file sizes in summary
-export const padding = 12;
-
+export const padding = configFileOpts.padding || 12;
 // Number of places to show on file sizes in summary
-export const places = 1;
+export const places = configFileOpts.places || 1;
+// Valid file extensions for input files
+export const validFileExts = configFileOpts.validFileExts || [
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".heic",
+];
 
-export const validExts = [".jpg", ".jpeg", ".png", ".webp", ".heic"];
-
+/**
+ * Configuration options
+ * @typedef {Object} Config
+ * @property {string|null} baseDir - Base directory to be processed (sent via CLI arguments).
+ * @property {string|null} jxlDir - Output directory for JXL files.
+ * @property {string|null} origDir - Destination directory for original files.
+ * @property {number} padding - Number of spaces to pad file sizes in summary (default: 12).
+ * @property {number} places - Number of places to round numbers in summary (default: 2).
+ * @property {Array<string>} validFileExts - Array of valid file extensions.
+ */
 export default {
   baseDir,
-  padding,
-  places,
   jxlDir,
   origDir,
-  validExts,
+  padding,
+  places,
+  validFileExts,
 };
+
+/**
+ * Configuration options
+ * @typedef {Object} ConfigFileOpts
+ * @property {number} [padding] - Number of spaces to pad file sizes in summary (default: 12).
+ * @property {number} [places] - Number of places to round numbers in summary (default: 2).
+ * @property {Array<string>} [validFileExts] - Array of valid file extensions.
+ */
+
+/**
+ * Gets configuration options from config file.
+ * @returns {Promise<ConfigFileOpts>} - Configuration file options.
+ */
+async function getConfigOptions() {
+  const configFile = await readConfigFile();
+
+  if (configFile === "") return {};
+
+  try {
+    const config = YAML.parse(configFile);
+    console.log("Config file options: ", config);
+    return config;
+  } catch (err) {
+    // Syntax error in config file
+    if (err instanceof SyntaxError) {
+      log.error("Syntax error in config file:", err.message);
+      process.exit(1);
+    }
+
+    // All other errors
+    if (err instanceof Error) {
+      // Skip non-ENOENT errors (file not found)
+      // @ts-ignore
+      if (err?.code !== "ENOENT") {
+        log.info("Unable to read config file:", err.message);
+      }
+    } else {
+      log.error("Error reading config file:", err);
+    }
+  }
+
+  return {};
+}
+
+async function readConfigFile() {
+  const configFile = "./jxl-convert.config.yaml";
+
+  try {
+    // Read the config file content
+    log.debug("Reading config file:", configFile);
+    const file = await fsp.readFile(configFile, "utf8");
+    return file;
+  } catch (err) {
+    // All other errors
+    if (err instanceof Error) {
+      // Skip non-ENOENT errors (file not found)
+      // @ts-ignore
+      if (err?.code === "ENOENT") {
+        log.info("No config file found. Using default options.");
+      } else {
+        log.error("Unable to read config file:", err.message);
+      }
+    } else {
+      log.error("Error reading config file:", err);
+    }
+  }
+
+  return "";
+}
