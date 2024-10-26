@@ -3,6 +3,7 @@ import pluginJs from "@eslint/js";
 import jest from "eslint-plugin-jest";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
+import jsdoc from "eslint-plugin-jsdoc";
 
 const config = [
   { ignores: ["**/node_modules/*", "**/public/js/*"] },
@@ -13,10 +14,12 @@ const config = [
   },
   {
     plugins: {
+      jsdoc,
       jest,
       "simple-import-sort": simpleImportSort,
     },
   },
+  jsdoc.configs["flat/recommended"],
   pluginJs.configs.recommended,
   {
     rules: {
@@ -36,7 +39,7 @@ const config = [
           ignoreInlineComments: true,
         },
       ],
-      complexity: ["warn", { max: 5 }],
+      complexity: ["warn", { max: 7 }],
       curly: ["error", "multi-line", "consistent"],
       "default-case-last": "error",
       "default-param-last": "error",
@@ -143,6 +146,7 @@ const config = [
       "sort-vars": "error",
       "valid-typeof": "error",
       "vars-on-top": "error",
+      "jsdoc/require-description": "warn",
     },
   },
 ];
