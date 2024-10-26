@@ -22,6 +22,10 @@ const config = [
   pluginJs.configs.recommended,
   importPlugin.flatConfigs.recommended,
   {
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
     rules: {
       ...jest.configs.recommended.rules,
       "array-callback-return": "error",
@@ -139,8 +143,11 @@ const config = [
       "prefer-template": "error",
       "prefer-spread": "error",
       "require-atomic-updates": "warn",
+      "jsdoc/require-description-complete-sentence": "warn",
       "require-await": "error",
       //"sort-keys": "warn",
+      "jsdoc/check-indentation": "warn",
+      "jsdoc/require-hyphen-before-param-description": "warn",
       "sort-vars": "error",
       "valid-typeof": "error",
       "vars-on-top": "error",
