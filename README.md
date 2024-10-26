@@ -19,4 +19,4 @@ npm start [base_dir]
   - [ ] Path to ImageMagick binary in CLI arguments
   - [ ] Valid filetypes
 - [ ] Allow setting options via CLI arguments
-- [ ] Allow setting options via config file
+- [x] Allow setting options via config file
