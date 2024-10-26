@@ -1,5 +1,5 @@
 /**
- * Input directory module
+ * Input directory module.
  * @module input-dir
  */
 
@@ -12,8 +12,7 @@ import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
 
 /**
  * Input dir object.
- *
- * @typedef {Object} InputDir
+ * @typedef {object} InputDir
  * @property {string} inPath - The input path.
  * @property {string} outPath - The output path.
  * @property {string} origPath - Path to "orig" directory.
@@ -21,9 +20,9 @@ import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
  */
 
 /**
- * Gets directory contents
- * @param {string} dir The directory
- * @returns {Promise<string[]>} The contents
+ * Gets directory contents.
+ * @param {string} dir - The directory.
+ * @returns {Promise<string[]>} The contents.
  */
 const getDirContents = async (dir) => {
   try {
@@ -41,9 +40,8 @@ const getDirContents = async (dir) => {
 
 /**
  * Sets up an input directory object with properties and methods for processing.
- *
  * @param {string} dir - The path to the input directory.
- * @returns {Promise<InputDir>} - An input dir object
+ * @returns {Promise<InputDir>} - An input dir object.
  */
 export default async (dir) => {
   const outPath = getOutDirPath(dir);

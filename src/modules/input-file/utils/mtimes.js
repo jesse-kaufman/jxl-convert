@@ -7,7 +7,7 @@ import fsp from "node:fs/promises";
 import log from "../../../utils/logger.js";
 
 /**
- * Syncs the modification times of two files
+ * Syncs the modification times of two files.
  * @param {string} srcPath - Path to the modification time source.
  * @param {string} destPath - Path to the file to modify.
  * @returns
@@ -30,9 +30,9 @@ export const syncMTimes = async (srcPath, destPath) => {
 };
 
 /**
- * Gets the modification time for a given path
- * @param {string} path - Path to get the modification time for
- * @returns {Promise<Date>} - The modification time
+ * Gets the modification time for a given path.
+ * @param {string} path - Path to get the modification time for.
+ * @returns {Promise<Date>} - The modification time.
  */
 async function getMTime(path) {
   log.debug(`File: ${path}`);
@@ -53,7 +53,7 @@ async function getMTime(path) {
 }
 
 /**
- * Sets the modification time for a given path
+ * Sets the modification time for a given path.
  * @param {string} path
  * @param {Date} mtime
  */

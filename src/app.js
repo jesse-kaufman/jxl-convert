@@ -1,6 +1,5 @@
 import { execSync } from "child_process";
 import fs from "fs";
-
 import { baseDir, jxlDir, origDir } from "./config/config.js";
 import setupInputDir from "./modules/input-dir.js";
 import setupInputFile from "./modules/input-file/input-file.js";
@@ -16,7 +15,7 @@ export default class App {
   }
 
   /**
-   * Runs the program
+   * Runs the program.
    */
   async run() {
     if (baseDir === "") {
@@ -41,14 +40,11 @@ export default class App {
     log.debug("Printing summary");
     printSummary();
   }
-
-  async getConfig() {}
 }
 
 /**
  * Processes the given directory recursively.
- *
- * @param {string} dir Path to the directory
+ * @param {string} dir - Path to the directory.
  */
 async function processDir(dir) {
   // Don't process base JXL or orig directories
@@ -66,13 +62,12 @@ async function processDir(dir) {
 }
 
 /**
- * Process item (file or directory) inside dir
+ * Processes item (file or directory) inside dir.
  *
- * - Calls processFile() on files
- * - Calls processDir() on directories
- *
- * @param {string} dir Directory in which item to process exists
- * @param {string} item Name of item to process
+ * - Calls processFile() on files.
+ * - Calls processDir() on directories.
+ * @param {string} dir - Directory in which item to process exists.
+ * @param {string} item - Name of item to process.
  */
 function processPathItem(dir, item) {
   const itemPath = getInFilePath(dir, item);
@@ -90,9 +85,8 @@ function processPathItem(dir, item) {
 }
 
 /**
- * Processes a file and converts it into JXL if a valid image type
- *
- * @param {string} filePath The path to the file to be processed
+ * Processes a file and converts it into JXL if a valid image type.
+ * @param {string} filePath - The path to the file to be processed.
  */
 function processFile(filePath) {
   const inputFile = setupInputFile(filePath);
@@ -110,7 +104,7 @@ function processFile(filePath) {
 }
 
 /**
- * Initializes the JXL and "orig" directories
+ * Initializes the JXL and "orig" directories.
  */
 function initOutputDirs() {
   console.log("Initializing output directories.");
@@ -119,8 +113,8 @@ function initOutputDirs() {
 }
 
 /**
- * Check if ImageMagick is available
- * @returns {boolean} - True if ImageMagick is available
+ * Check if ImageMagick is available.
+ * @returns {boolean} - True if ImageMagick is available.
  */
 function imageMagickExists() {
   try {

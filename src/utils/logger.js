@@ -5,7 +5,6 @@
 export default {
   /**
    * Logs a success message to the console in green color.
-   *
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
    */
@@ -14,7 +13,6 @@ export default {
 
   /**
    * Logs an error message to the console in red color.
-   *
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
    */
@@ -23,7 +21,6 @@ export default {
 
   /**
    * Logs a warning message to the console in yellow color.
-   *
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
    */
@@ -31,7 +28,6 @@ export default {
 
   /**
    * Logs a message to the console.
-   *
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
    */
@@ -39,7 +35,6 @@ export default {
 
   /**
    * Logs a highlighted message to the console.
-   *
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
    */
@@ -47,7 +42,6 @@ export default {
 
   /**
    * Logs a debug message to the console if debugging is enabled.
-   *
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
    */

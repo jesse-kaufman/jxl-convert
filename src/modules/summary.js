@@ -1,13 +1,10 @@
 import getFolderSize from "get-folder-size";
-
-import config from "../config/config.js";
 import { GB, MB } from "../config/constants.js";
+import { baseDir, jxlDir, origDir, padding, places } from "../config/config.js";
 import log from "../utils/logger.js";
 
-const { baseDir, jxlDir, origDir, padding, places } = config;
-
 /**
- * Prints a summary of information about the completed conversion process
+ * Prints a summary of information about the completed conversion process.
  */
 export default async () => {
   const origDirSize = origDir ? await getFolderSize.loose(origDir) : 0;
@@ -26,7 +23,8 @@ export default async () => {
 
 /**
  * Converts bytes to human-readable format, optionally with padding.
- * @param {number} bytes Number of bytes to convert.
+ * @param {number} bytes - Number of bytes to convert.
+ * @param {boolean} pad - True if size should be padded, otherwise false.
  * @returns {string} Human-readable format of the size.
  */
 function formatSize(bytes, pad = false) {

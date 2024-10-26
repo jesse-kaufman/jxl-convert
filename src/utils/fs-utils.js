@@ -4,7 +4,7 @@ import log from "./logger.js";
 
 /**
  * Creates a directory if it doesn't exist already.
- * @param {string|null} dir The directory to create
+ * @param {string|null} dir - The directory to create.
  */
 export const createDir = (dir) => {
   if (!dir) return;

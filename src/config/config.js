@@ -1,26 +1,51 @@
 /* eslint-disable no-magic-numbers */
 /**
- * Configuration
+ * Configuration.
  */
-import fsp from "fs/promises";
-import path from "path";
+import fsp from "node:fs/promises";
+import path from "node:path";
+
 import YAML from "yaml";
 
 import log from "../utils/logger.js";
 
 // Get configuration options from config file
 const configFileOpts = await getConfigOptions();
-/** Base dir to be processed (sent via CLI arguments) @const {string|null} */
+
+/**
+ * Base dir to be processed (sent via CLI arguments).
+ * @type {string}
+ */
 export const baseDir = process.argv[2] || "";
-// Output directory for JXL files
+
+/**
+ * Output directory for JXL files.
+ * @type {string}
+ */
 export const jxlDir = path.join(baseDir, "jxl");
-// Destination directory for original files
+
+/**
+ * Destination directory for original files.
+ * @type {string}
+ */
 export const origDir = path.join(baseDir, "orig");
-// Number of spaces to pad file sizes in summary
+
+/**
+ * Number of spaces to pad file sizes in summary.
+ * @type {number}
+ */
 export const padding = configFileOpts.padding || 12;
-// Number of places to show on file sizes in summary
+
+/**
+ * Number of places to show on file sizes in summary.
+ * @type {number}
+ */
 export const places = configFileOpts.places || 1;
-// Valid file extensions for input files
+
+/**
+ * Valid file extensions for input files.
+ * @type {Array<string>}
+ */
 export const validFileExts = configFileOpts.validFileExts || [
   ".jpg",
   ".jpeg",
@@ -30,7 +55,7 @@ export const validFileExts = configFileOpts.validFileExts || [
 ];
 
 /**
- * Configuration options
+ * Configuration file options.
  * @typedef {object} ConfigFileOpts
  * @property {number} [padding] - Number of spaces to pad file sizes in summary (default: 12).
  * @property {number} [places] - Number of places to round numbers in summary (default: 2).
@@ -64,7 +89,7 @@ async function getConfigOptions() {
 }
 
 /**
- * Reads configuration options from config file
+ * Reads configuration options from config file.
  * @returns {Promise<string>} - Contents of the config file.
  */
 async function readConfigFile() {
@@ -94,7 +119,7 @@ async function readConfigFile() {
 }
 
 /**
- * Configuration options
+ * Configuration options.
  * @typedef {object} Config
  * @property {string|null} baseDir - Base directory to be processed (sent via CLI arguments).
  * @property {string|null} jxlDir - Output directory for JXL files.

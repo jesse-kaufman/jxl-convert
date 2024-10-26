@@ -8,10 +8,8 @@ import log from "../../../utils/logger.js";
 
 /**
  * Converts input image to JXL using a quality setting of 75%.
- *
  * @param {string} inFilePath - The path to the input image file.
  * @param {string} outFilePath - The path to the output image file.
- *
  * @throws Will throw an error if the conversion process encounters any issues.
  */
 export default (inFilePath, outFilePath) => {
