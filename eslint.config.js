@@ -1,9 +1,9 @@
 /* eslint-disable no-magic-numbers */
 import pluginJs from "@eslint/js";
 import jest from "eslint-plugin-jest";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
-import globals from "globals";
 import jsdoc from "eslint-plugin-jsdoc";
+import importPlugin from "eslint-plugin-import";
+import globals from "globals";
 
 const config = [
   { ignores: ["**/node_modules/*", "**/public/js/*"] },
@@ -16,11 +16,11 @@ const config = [
     plugins: {
       jsdoc,
       jest,
-      "simple-import-sort": simpleImportSort,
     },
   },
   jsdoc.configs["flat/recommended"],
   pluginJs.configs.recommended,
+  importPlugin.flatConfigs.recommended,
   {
     rules: {
       ...jest.configs.recommended.rules,
@@ -140,13 +140,12 @@ const config = [
       "prefer-spread": "error",
       "require-atomic-updates": "warn",
       "require-await": "error",
-      "simple-import-sort/exports": "error",
-      "simple-import-sort/imports": "error",
       //"sort-keys": "warn",
       "sort-vars": "error",
       "valid-typeof": "error",
       "vars-on-top": "error",
       "jsdoc/require-description": "warn",
+      "import/order": "warn",
     },
   },
 ];
