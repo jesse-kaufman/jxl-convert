@@ -15,9 +15,11 @@ export const createDir = async (dir) => {
     await fsp.mkdir(dir);
   } catch (err) {
     // Directory already existed
+    // @ts-ignore
     if (err?.code === "EEXIST") return log.success(`${dir} already exists`);
 
     // An error occurred
+    // @ts-ignore
     log.error(err.message);
     process.exit(1);
   }
