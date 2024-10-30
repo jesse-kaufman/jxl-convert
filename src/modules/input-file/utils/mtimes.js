@@ -47,6 +47,7 @@ async function getMTime(path) {
     const errMsg = `Error reading file: ${path}`;
     const details = err instanceof Error ? err.message : null;
     log.error(`${errMsg}${details}`);
+
     // Exit app
     process.exit(1);
   }
