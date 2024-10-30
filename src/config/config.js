@@ -91,7 +91,7 @@ async function getConfigOptions() {
   } catch (err) {
     // Syntax error in config file
     if (err instanceof Error) {
-      log.error("Syntax error in config file:", err.message);
+      log.error("Unable to parse config file:", err.message, err.stack);
       // Exit early
       process.exit(1);
     }
@@ -120,7 +120,7 @@ async function readConfigFile() {
       if (err?.code === "ENOENT") {
         log.info("No config file found. Using default options.");
       } else {
-        log.error("Unable to read config file:", err.message);
+        log.error("Unable to read config file:", err.message, err.stack);
       }
     } else {
       log.error("Error reading config file:", err);
