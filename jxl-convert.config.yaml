@@ -4,3 +4,5 @@ validFileExts:
   - .png
   - .webp
   - .heic
+debug: true
+logFileDebug: true
