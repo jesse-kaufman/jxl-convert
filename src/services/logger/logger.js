@@ -1,9 +1,19 @@
+/**
+ * Wrapper for winston logging library.
+ * @module services/logging
+ */
+
 import { debug } from "../../config/config.js";
 import logger from "./utils/winston.js";
 
 /**
- * Utilities for logging.
- * @module utils/logging
+ * Wrapper object for winston logging library.
+ * @property {Function} success - Log success message.
+ * @property {Function} error - Log error message.
+ * @property {Function} warning - Log warning message.
+ * @property {Function} notice - Log notice message.
+ * @property {Function} info - Log info message.
+ * @property {Function} debug - Log debug message.
  */
 export default {
   /**
