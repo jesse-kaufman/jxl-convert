@@ -68,6 +68,8 @@ async function setMTime(path, mtime) {
     fd = await fsp.open(path, "r+");
     // Set the new modification time for the file
     await fsp.utimes(path, mtime, mtime);
+    // Log success message
+    log.debug(`Modification time changed successfully.`);
   } catch (err) {
     // Log error
     const errMsg = `Error opening file: ${path}`;
@@ -80,6 +82,4 @@ async function setMTime(path, mtime) {
     if (fd) fd.close();
     log.debug(`Closed file: ${path}`);
   }
-
-  log.debug(`Modification time changed successfully.`);
 }
