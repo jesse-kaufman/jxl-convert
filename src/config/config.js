@@ -53,10 +53,22 @@ export const validFileExts = configFileOpts.validFileExts || [
 ];
 
 /**
+ * Whether or not to print debug messages to stdout.
+ */
+export const debug = configFileOpts.debug || false;
+
+/**
+ * Whether or not to log debug messages to log file.
+ */
+export const logFileDebug = configFileOpts.logFileDebug || true;
+
+/**
  * Configuration file options.
  * @typedef {object} ConfigFileOpts
  * @property {number} [padding] - Number of spaces to pad file sizes in summary (default: 12).
  * @property {number} [places] - Number of places to round numbers in summary (default: 2).
+ * @property {boolean} [debug] - Whether or not to print debug messages to stdout.
+ * @property {boolean} [logFileDebug] - Whether or not to log debug messages to to log file.
  * @property {Array<string>} [validFileExts] - Array of valid file extensions.
  */
 
@@ -126,6 +138,8 @@ async function readConfigFile() {
  * @property {string|null} origDir - Destination directory for original files.
  * @property {number} padding - Number of spaces to pad file sizes in summary (default: 12).
  * @property {number} places - Number of places to round numbers in summary (default: 2).
+ * @property {boolean} debug - Whether or not to print debug messages to stdout.
+ * @property {boolean} logFileDebug - Whether or not to log debug messages to to log file.
  * @property {Array<string>} validFileExts - Array of valid file extensions.
  */
 export default {
