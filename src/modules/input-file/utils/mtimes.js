@@ -24,8 +24,7 @@ export const syncMTimes = async (srcPath, destPath) => {
   if (srcMTime.getTime() !== destMTime.getTime()) {
     log.info("File modification times differ. Modifying...");
     // Set mtime on destination to the source mtime
-    setMTime(destPath, srcMTime);
-    return;
+    return setMTime(destPath, srcMTime);
   }
 
   // If the modification times are the same, log a debug message
