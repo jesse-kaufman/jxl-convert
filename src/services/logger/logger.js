@@ -45,16 +45,6 @@ export default {
   },
 
   /**
-   * Logs a message to the console.
-   * @param {string} msg - The message.
-   * @param {any} args - Additional arguments.
-   * @returns {void}
-   */
-  info(msg, ...args) {
-    logger.info(msg, ...args);
-  },
-
-  /**
    * Logs a highlighted message to the console.
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
@@ -62,6 +52,16 @@ export default {
    */
   notice(msg, ...args) {
     logger.notice(msg, ...args);
+  },
+
+  /**
+   * Logs a message to the console.
+   * @param {string} msg - The message.
+   * @param {any} args - Additional arguments.
+   * @returns {void}
+   */
+  info(msg, ...args) {
+    logger.info(msg, ...args);
   },
 
   /**
