@@ -7,10 +7,12 @@ import log from "./logger/logger.js";
  * @returns {Promise<void>} Promise.
  */
 export const createDir = async (dir) => {
+  // If directory is null, no need to create it
   if (!dir) return;
 
-  // Try to create the directory
   log.debug(`Creating ${dir} directory...`);
+
+  // Try to create the directory
   try {
     await fsp.mkdir(dir);
   } catch (err) {
