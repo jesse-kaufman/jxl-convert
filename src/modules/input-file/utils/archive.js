@@ -17,9 +17,8 @@ export default async (src, dest) => {
     await fsp.rename(src, path.join(dest, path.basename(src)));
   } catch (err) {
     // Log error
-    const errMsg = `Error moving ${src} to ${dest}`;
-    const details = err instanceof Error ? err.message : null;
-    log.error(`${errMsg}${details}`);
+    const details = err instanceof Error ? err.message : "";
+    log.error(`Error moving ${src} to ${dest}${details}`);
 
     // Exit app
     process.exit(1);
