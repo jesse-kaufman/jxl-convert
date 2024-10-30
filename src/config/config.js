@@ -87,7 +87,7 @@ async function getConfigOptions() {
   } catch (err) {
     // Syntax error in config file
     if (err instanceof Error) {
-      log.error("Unable to parse config file:", err.message, err.stack);
+      console.error("Unable to parse config file:", err.message, err.stack);
       // Exit early
       process.exit(1);
     }
