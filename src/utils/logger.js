@@ -1,3 +1,5 @@
+import { debug } from "../config/config.js";
+
 /**
  * Utilities for logging.
  * @module utils/logging
@@ -51,6 +53,6 @@ export default {
    * @param {any} args - Additional arguments.
    */
   debug(msg, ...args) {
-    if (process.env.DEBUG) console.debug(`[DEBUG] ${msg}`, ...args);
+    if (debug) console.debug(`[DEBUG] ${msg}`, ...args);
   },
 };
