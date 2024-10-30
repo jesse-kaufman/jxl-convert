@@ -145,11 +145,4 @@ log.debug("Config file options: ", configFileOpts);
  * @property {boolean} logFileDebug - Whether or not to log debug messages to to log file.
  * @property {Array<string>} validFileExts - Array of valid file extensions.
  */
-export default {
-  baseDir,
-  jxlDir,
-  origDir,
-  padding,
-  places,
-  validFileExts,
-};
+
