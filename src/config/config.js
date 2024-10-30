@@ -126,9 +126,6 @@ async function readConfigFile() {
   return "";
 }
 
-log.debug("Config file options: ", configFileOpts);
-
-
 /**
  * Configuration options.
  * @typedef {object} Config
@@ -141,4 +138,3 @@ log.debug("Config file options: ", configFileOpts);
  * @property {boolean} logFileDebug - Whether or not to log debug messages to to log file.
  * @property {Array<string>} validFileExts - Array of valid file extensions.
  */
-
