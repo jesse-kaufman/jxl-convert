@@ -44,8 +44,10 @@ export default (filePath) => {
     /** Converts file to JXL. */
     async convert() {
       log.debug(`Converting file: ${this.filePath}`);
+
       // Convert image to JXL
       convertImage(this.filePath, this.outFilePath);
+
       // Sync modification time of new file with old file
       await syncMTimes(this.filePath, this.outFilePath);
     },
