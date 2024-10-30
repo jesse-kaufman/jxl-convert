@@ -14,7 +14,9 @@ import log from "../../../services/logger/logger.js";
 export const syncMTimes = async (srcPath, destPath) => {
   // Get the modification times of the two files
   const srcMTime = await getMTime(srcPath);
+  log.debug(`${srcPath} modification time:\n\t${srcMTime.toString()}`);
   const destMTime = await getMTime(destPath);
+  log.debug(`${destPath} modification time:\n\t${destMTime.toString()}`);
 
   // If the modification times differ, update the out file modification
   if (srcMTime.getTime() !== destMTime.getTime()) {
@@ -34,12 +36,9 @@ export const syncMTimes = async (srcPath, destPath) => {
  * @returns {Promise<Date>} - The modification time.
  */
 async function getMTime(path) {
-  log.debug(`File: ${path}`);
-
   try {
     // Get the file stats and return the modification time
     const stats = await fsp.stat(path);
-    log.debug(`Last modified date: ${stats.mtime}`);
     return stats?.mtime;
   } catch (err) {
     // Log error
