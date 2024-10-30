@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import fs from "fs";
+import fsp from "node:fs/promises";
 import { baseDir, jxlDir, origDir } from "./config/config.js";
 import setupInputDir from "./modules/input-dir.js";
 import setupInputFile from "./modules/input-file/input-file.js";
@@ -69,19 +69,22 @@ async function processDir(dir) {
  * @param {string} dir - Directory in which item to process exists.
  * @param {string} item - Name of item to process.
  */
-function processPathItem(dir, item) {
+async function processPathItem(dir, item) {
   const itemPath = getInFilePath(dir, item);
 
-  fs.stat(itemPath, (err, fileStat) => {
+  try {
+    // Get stats for the current path item
+    const fileStat = await fsp.stat(itemPath);
+
+    // If path is a directory, call processDir()
+    if (fileStat.isDirectory()) processDir(itemPath);
+
+    // If process the file, call processFile()
+    if (fileStat.isFile()) processFile(itemPath);
+  } catch (err) {
     // Return if an error occurred
-    if (err) return log.error(`Error reading file: ${itemPath}`);
-
-    // Path is a directory, call processDir()
-    if (fileStat.isDirectory()) return processDir(itemPath);
-
-    // Process the file, call processFile()
-    if (fileStat.isFile()) return processFile(itemPath);
-  });
+    if (err) log.error(`Error reading file: ${itemPath}`);
+  }
 }
 
 /**
