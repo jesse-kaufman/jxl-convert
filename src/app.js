@@ -10,8 +10,8 @@ import { getInFilePath } from "./utils/path-utils.js";
 
 export default class App {
   constructor() {
-    this.inputDirs = [];
-    this.inputFileStats = [];
+    // No op
+    console.log("Starting");
   }
 
   /**
