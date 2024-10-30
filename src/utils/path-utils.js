@@ -1,5 +1,4 @@
 import path from "path";
-
 import { baseDir, jxlDir, origDir } from "../config/config.js";
 
 /**

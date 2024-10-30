@@ -3,7 +3,6 @@
  * @module utils/mtime
  */
 import fsp from "node:fs/promises";
-
 import log from "../../../utils/logger.js";
 
 /**

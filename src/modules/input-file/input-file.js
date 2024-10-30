@@ -3,7 +3,6 @@
  * @module input-file
  */
 import path from "path";
-
 import { validFileExts } from "../../config/config.js";
 import log from "../../utils/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
