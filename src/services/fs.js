@@ -12,8 +12,8 @@ export const createDir = async (dir) => {
 
   log.debug(`Creating ${dir} directory...`);
 
-  // Try to create the directory
   try {
+    // Create the directory
     await fsp.mkdir(dir);
   } catch (err) {
     // Directory already existed
