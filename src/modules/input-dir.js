@@ -57,8 +57,8 @@ export default async (dir) => {
 
   if (dir !== baseDir) {
     // Create directories inside JXL and "orig" dirs to mirror heirarchy of input dir
-    createDir(outPath);
-    createDir(origPath);
+    await createDir(outPath);
+    await createDir(origPath);
   }
   return inputDir;
 };
