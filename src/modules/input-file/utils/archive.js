@@ -4,7 +4,7 @@
  */
 import fsp from "node:fs/promises";
 import path from "node:path";
-import log from "../../../utils/logger.js";
+import log from "../../../utils/logger/logger.js";
 
 /**
  * Archives original files into the "orig" dir.

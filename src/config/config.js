@@ -5,7 +5,7 @@
 import fsp from "node:fs/promises";
 import path from "node:path";
 import YAML from "yaml";
-import log from "../utils/logger.js";
+import log from "../utils/logger/logger.js";
 
 // Get configuration options from config file
 const configFileOpts = await getConfigOptions();

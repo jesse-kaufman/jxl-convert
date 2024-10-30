@@ -6,7 +6,7 @@ import {
   places,
   padding,
 } from "../../config/config.js";
-import log from "../../utils/logger.js";
+import log from "../../utils/logger/logger.js";
 import formatSize from "./utils/format-size.js";
 
 /**

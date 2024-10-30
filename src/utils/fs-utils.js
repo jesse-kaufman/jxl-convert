@@ -1,5 +1,5 @@
 import fs from "fs";
-import log from "./logger.js";
+import log from "./logger/logger.js";
 
 /**
  * Creates a directory if it doesn't exist already.

@@ -5,7 +5,7 @@ import setupInputDir from "./modules/input-dir.js";
 import setupInputFile from "./modules/input-file/input-file.js";
 import printSummary from "./modules/summary/summary.js";
 import { createDir } from "./utils/fs-utils.js";
-import log from "./utils/logger.js";
+import log from "./utils/logger/logger.js";
 import { getInFilePath } from "./utils/path-utils.js";
 
 export default class App {

@@ -6,7 +6,7 @@
 import fsp from "node:fs/promises";
 import { baseDir } from "../config/config.js";
 import { createDir } from "../utils/fs-utils.js";
-import log from "../utils/logger.js";
+import log from "../utils/logger/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
 
 /**

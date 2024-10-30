@@ -4,7 +4,7 @@
  */
 import path from "path";
 import { validFileExts } from "../../config/config.js";
-import log from "../../utils/logger.js";
+import log from "../../utils/logger/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
 import archiveOrigFile from "./utils/archive.js";
 import convertImage from "./utils/convert.js";

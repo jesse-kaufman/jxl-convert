@@ -3,7 +3,7 @@
  * @module utils/mtime
  */
 import fsp from "node:fs/promises";
-import log from "../../../utils/logger.js";
+import log from "../../../utils/logger/logger.js";
 
 /**
  * Syncs the modification times of two files.
