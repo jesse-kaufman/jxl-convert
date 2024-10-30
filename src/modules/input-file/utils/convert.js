@@ -3,7 +3,7 @@
  * @module utils/convert
  */
 import { execSync } from "node:child_process";
-import log from "../../../utils/logger/logger.js";
+import log from "../../../services/logger/logger.js";
 
 /**
  * Converts input image to JXL using a quality setting of 75%.

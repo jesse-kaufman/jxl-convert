@@ -5,8 +5,8 @@
 
 import fsp from "node:fs/promises";
 import { baseDir } from "../config/config.js";
-import { createDir } from "../utils/fs-utils.js";
-import log from "../utils/logger/logger.js";
+import { createDir } from "../services/fs.js";
+import log from "../services/logger/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../utils/path-utils.js";
 
 /**
