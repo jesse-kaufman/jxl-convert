@@ -14,10 +14,10 @@ import log from "../../../services/logger/logger.js";
 export const syncMTimes = async (srcPath, destPath) => {
   // Get modification times of the source file
   const srcMTime = await getMTime(srcPath);
-  log.debug(`${srcPath} modification time:\n\t${srcMTime.toString()}`);
-
   // Get modification time of the destination file
   const destMTime = await getMTime(destPath);
+
+  log.debug(`${srcPath} modification time:\n\t${srcMTime.toString()}`);
   log.debug(`${destPath} modification time:\n\t${destMTime.toString()}`);
 
   // If the modification times differ, update the out file modification
