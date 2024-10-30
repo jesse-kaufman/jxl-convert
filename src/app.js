@@ -30,7 +30,7 @@ export default class App {
 
     // Create output directories if needed
     log.debug("Initializing");
-    initOutputDirs();
+    await initOutputDirs();
 
     // Recursively process the provided base directory
     log.debug("Starting processing");
@@ -106,10 +106,10 @@ function processFile(filePath) {
 /**
  * Initializes the JXL and "orig" directories.
  */
-function initOutputDirs() {
+async function initOutputDirs() {
   log.info("Initializing output directories.");
-  createDir(jxlDir);
-  createDir(origDir);
+  await createDir(jxlDir);
+  await createDir(origDir);
 }
 
 /**
