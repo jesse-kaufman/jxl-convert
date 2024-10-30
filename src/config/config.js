@@ -83,11 +83,7 @@ async function getConfigOptions() {
 
   try {
     // Parse the YAML content into an object
-    log.info("Parsing config file...");
-    const config = YAML.parse(configFile);
-
-    // Return the config
-    return config;
+    return YAML.parse(configFile);
   } catch (err) {
     // Syntax error in config file
     if (err instanceof Error) {
