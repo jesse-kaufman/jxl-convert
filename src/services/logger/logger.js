@@ -21,7 +21,7 @@ export default {
    * @param {string} msg - The message.
    */
   success(msg) {
-    logger.log("success", msg);
+    logger.success(msg);
   },
 
   /**
