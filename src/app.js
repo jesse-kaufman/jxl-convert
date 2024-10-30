@@ -119,9 +119,10 @@ async function initOutputDirs() {
 function imageMagickExists() {
   try {
     execSync("magick -version", { stdio: "ignore" });
-    return true;
     // eslint-disable-next-line no-unused-vars
   } catch (err) {
     return false;
   }
+
+  return true;
 }
