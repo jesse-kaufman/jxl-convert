@@ -60,6 +60,6 @@ export default {
    * @param {any} args - Additional arguments.
    */
   debug(msg, ...args) {
-    if (debug) logger.debug(`[DEBUG] ${msg}`, ...args);
+    if (debug) logger.debug(`${msg}`, ...args);
   },
 };
