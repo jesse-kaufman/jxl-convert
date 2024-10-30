@@ -83,9 +83,9 @@ async function getConfigOptions() {
 
   try {
     // Parse the YAML content into an object
-    log.debug("Parsing config file...");
+    log.info("Parsing config file...");
     const config = YAML.parse(configFile);
-    log.debug("Config file options: ", config);
+
     // Return the config
     return config;
   } catch (err) {
@@ -109,7 +109,7 @@ async function readConfigFile() {
 
   try {
     // Read the config file content
-    log.debug("Reading config file:", configFile);
+    log.info("Reading config file:", configFile);
     const file = await fsp.readFile(configFile, "utf8");
     return file;
   } catch (err) {
@@ -129,6 +129,9 @@ async function readConfigFile() {
 
   return "";
 }
+
+log.debug("Config file options: ", configFileOpts);
+
 
 /**
  * Configuration options.
