@@ -41,7 +41,7 @@ async function getMTime(path) {
   try {
     // Get the file stats and return the modification time
     const stats = await fsp.stat(path);
-    return stats?.mtime;
+    return stats.mtime;
   } catch (err) {
     // Log error
     const errMsg = `Error reading file: ${path}`;
