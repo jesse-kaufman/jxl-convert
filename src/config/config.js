@@ -55,7 +55,7 @@ export const validFileExts = configFileOpts.validFileExts || [
 /**
  * Whether or not to print debug messages to stdout.
  */
-export const debug = configFileOpts.debug || false;
+export const debug = process.env.DEBUG || configFileOpts.debug || false;
 
 /**
  * Whether or not to log debug messages to log file.
