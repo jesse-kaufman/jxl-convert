@@ -9,7 +9,7 @@ import log from "../../../services/logger/logger.js";
  * Syncs the modification times of two files.
  * @param {string} srcPath - Path to the modification time source.
  * @param {string} destPath - Path to the file to modify.
- * @returns {Promise<undefined>}
+ * @returns {Promise<void>}
  */
 export const syncMTimes = async (srcPath, destPath) => {
   // Get modification times of the source file
