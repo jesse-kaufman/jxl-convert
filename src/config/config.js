@@ -70,15 +70,17 @@ async function getConfigOptions() {
   if (configFile === "") return {};
 
   try {
+    // Parse the YAML content into an object
     log.debug("Parsing config file...");
     const config = YAML.parse(configFile);
     log.debug("Config file options: ", config);
-
+    // Return the config
     return config;
   } catch (err) {
     // Syntax error in config file
     if (err instanceof Error) {
       log.error("Syntax error in config file:", err.message);
+      // Exit early
       process.exit(1);
     }
   }
