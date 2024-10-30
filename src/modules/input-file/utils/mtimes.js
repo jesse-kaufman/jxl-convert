@@ -38,8 +38,9 @@ export const syncMTimes = async (srcPath, destPath) => {
  */
 async function getMTime(path) {
   try {
-    // Get the file stats and return the modification time
+    // Get the file stats
     const stats = await fsp.stat(path);
+    // Return modification time
     return stats.mtime;
   } catch (err) {
     // Log error
