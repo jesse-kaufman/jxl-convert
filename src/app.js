@@ -11,7 +11,7 @@ import { getInFilePath } from "./utils/path-utils.js";
 export default class App {
   constructor() {
     // No op
-    console.log("Starting");
+    log.info("Starting");
   }
 
   /**
@@ -19,12 +19,12 @@ export default class App {
    */
   async run() {
     if (baseDir === "") {
-      console.error("Base directory not provided.");
+      log.error("Base directory not provided.");
       process.exit(1);
     }
 
     if (!imageMagickExists()) {
-      console.error("ImageMagick not found. Please install it and try again.");
+      log.error("ImageMagick not found. Please install it and try again.");
       process.exit(1);
     }
 
@@ -107,7 +107,7 @@ function processFile(filePath) {
  * Initializes the JXL and "orig" directories.
  */
 function initOutputDirs() {
-  console.log("Initializing output directories.");
+  log.info("Initializing output directories.");
   createDir(jxlDir);
   createDir(origDir);
 }
