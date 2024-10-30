@@ -50,9 +50,9 @@ export default (filePath) => {
       await syncMTimes(this.filePath, this.outFilePath);
     },
     /** Archives original file in "orig" directory. */
-    archiveOrigFile() {
+    async archiveOrigFile() {
       log.debug(`Archiving file: ${this.filePath}`);
-      archiveOrigFile(this.filePath, this.origPath);
+      await archiveOrigFile(this.filePath, this.origPath);
     },
   };
 };
