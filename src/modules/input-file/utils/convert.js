@@ -26,6 +26,5 @@ export default (inFilePath, outFilePath) => {
     throw err;
   }
 
-  log.success("Finished successfully!");
-  log.debug(`Saved JXL to ${outFilePath}`);
+  log.debug(`SUCCESS! Saved JXL to ${outFilePath}`);
 };
