@@ -71,7 +71,7 @@ async function setMTime(path, mtime) {
     // Log success message
     log.debug(`Modification time changed successfully.`);
   } catch (err) {
-    // Log error
+    // Log error message
     const errMsg = `Error opening file: ${path}`;
     const details = err instanceof Error ? ` - ${err.message}` : "";
     log.error(`${errMsg}${details}`);
