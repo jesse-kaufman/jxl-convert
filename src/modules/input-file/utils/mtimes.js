@@ -12,9 +12,11 @@ import log from "../../../services/logger/logger.js";
  * @returns {Promise<undefined>}
  */
 export const syncMTimes = async (srcPath, destPath) => {
-  // Get the modification times of the two files
+  // Get modification times of the source file
   const srcMTime = await getMTime(srcPath);
   log.debug(`${srcPath} modification time:\n\t${srcMTime.toString()}`);
+
+  // Get modification time of the destination file
   const destMTime = await getMTime(destPath);
   log.debug(`${destPath} modification time:\n\t${destMTime.toString()}`);
 
