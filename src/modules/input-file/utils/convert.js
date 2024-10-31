@@ -29,5 +29,5 @@ export default (inFilePath, outFilePath, imageQuality) => {
     }
   }
 
-  log.debug(`SUCCESS! Saved JXL to ${outFilePath}`);
+  log.success(`SUCCESS!\nSaved JXL to ${outFilePath}`);
 };
