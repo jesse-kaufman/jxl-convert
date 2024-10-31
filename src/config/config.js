@@ -84,13 +84,14 @@ export const imageQuality = configFileOpts.imageQuality || 80;
  * @returns {Promise<ConfigFileOpts>} - Configuration file options.
  */
 async function getConfigOptions() {
+  // Read the config file content into a string
   const configFile = await readConfigFile();
 
   // If config file doesn't exist or is empty, return empty object
   if (configFile == null) return {};
 
   try {
-    // Parse the YAML content into an object
+    // Parse the YAML content into an object and return
     return YAML.parse(configFile);
   } catch (err) {
     // Syntax error in config file
@@ -101,6 +102,7 @@ async function getConfigOptions() {
     }
   }
 
+  // Return empty object by default
   return {};
 }
 
