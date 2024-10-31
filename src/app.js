@@ -113,7 +113,7 @@ async function processFile(filePath) {
   await inputFile.convert();
 
   // Copy original file to the "orig" directory
-  await inputFile.archiveOrigFile();
+  await inputFile.archive();
 }
 
 /**

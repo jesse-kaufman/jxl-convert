@@ -6,7 +6,7 @@ import path from "path";
 import { validFileExts, imageQuality } from "../../config/config.js";
 import log from "../../services/logger/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
-import archiveOrigFile from "./utils/archive.js";
+import archiveFile from "./utils/archive.js";
 import convertImage from "./utils/convert.js";
 import { syncMTimes } from "./utils/mtimes.js";
 
@@ -20,7 +20,7 @@ import { syncMTimes } from "./utils/mtimes.js";
  * @property {string} outFilePath - Full path to the output file.
  * @property {string} origPath - Path to "orig" directory.
  * @property {Function} convert - Converts the input file to JXL.
- * @property {Function} archiveOrigFile - Archives the original file to the "orig" directory.
+ * @property {Function} archive - Archives the original file to the "orig" directory.
  */
 
 /**
@@ -52,9 +52,9 @@ export default (filePath) => {
       await syncMTimes(this.filePath, this.outFilePath);
     },
     /** Archives original file in "orig" directory. */
-    async archiveOrigFile() {
+    async archive() {
       log.debug(`Archiving file: ${this.filePath}`);
-      await archiveOrigFile(this.filePath, this.origPath);
+      await archiveFile(this.filePath, this.origPath);
     },
   };
 };
