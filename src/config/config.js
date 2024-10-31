@@ -63,6 +63,12 @@ export const debug = process.env.DEBUG || configFileOpts.debug || false;
 export const logFileDebug = configFileOpts.logFileDebug || true;
 
 /**
+ * Image quality to use when converting to JXL.
+ * @type {number}
+ */
+export const imageQuality = configFileOpts.imageQuality || 80;
+
+/**
  * Configuration file options.
  * @typedef {object} ConfigFileOpts
  * @property {number} [padding] - Number of spaces to pad file sizes in summary (default: 12).
@@ -70,6 +76,7 @@ export const logFileDebug = configFileOpts.logFileDebug || true;
  * @property {boolean} [debug] - Whether or not to print debug messages to stdout.
  * @property {boolean} [logFileDebug] - Whether or not to log debug messages to to log file.
  * @property {Array<string>} [validFileExts] - Array of valid file extensions.
+ * @property {number} [imageQuality] - Image quality to use when converting to JXL.
  */
 
 /**
@@ -136,5 +143,6 @@ async function readConfigFile() {
  * @property {number} places - Number of places to round numbers in summary (default: 2).
  * @property {boolean} debug - Whether or not to print debug messages to stdout.
  * @property {boolean} logFileDebug - Whether or not to log debug messages to to log file.
+ * @property {number} imageQuality - Image quality for conversion.
  * @property {Array<string>} validFileExts - Array of valid file extensions.
  */
