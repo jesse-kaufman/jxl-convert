@@ -20,7 +20,7 @@ import formatSize from "./utils/format-size.js";
 
 /**
  * Prints a summary of information about the completed conversion process.
- * @param {Logger} log - Logging object
+ * @param {Logger} log - Logging object.
  */
 export default async (log) => {
   const origDirSize = origDir ? await getFolderSize.loose(origDir) : 0;
