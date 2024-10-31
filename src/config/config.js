@@ -113,24 +113,25 @@ async function getConfigOptions() {
 async function readConfigFile() {
   const configFile = "./jxl-convert.config.yaml";
 
+  log.info("Reading config file:", configFile);
+
   try {
-    // Read the config file content
-    log.info("Reading config file:", configFile);
-    const file = await fsp.readFile(configFile, "utf8");
-    return file;
+    // Return the file content if it exists
+    return await fsp.readFile(configFile, "utf8");
   } catch (err) {
     // All other errors
     if (err instanceof Error) {
-      // Skip non-ENOENT errors (file not found)
+      // Log message and return immediately if config file does not exist
       // @ts-ignore
       if (err?.code === "ENOENT") {
-        log.info("No config file found. Using default options.");
-      } else {
-        log.error("Unable to read config file:", err.message, err.stack);
+        return log.info("No config file found. Using default options.");
       }
-    } else {
-      log.error("Error reading config file:", err);
+
+      // Log other errors and exit the app
+      log.error("Unable to read config file:", err.message, err.stack);
+      process.exit(1);
     }
+    log.error("Error reading config file:", err);
   }
 
   return "";
