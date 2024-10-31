@@ -113,7 +113,7 @@ async function getConfigOptions() {
 async function readConfigFile() {
   const configFile = "./jxl-convert.config.yaml";
 
-  log.info("Reading config file:", configFile);
+  log.info(`Reading config file: ${configFile}`);
 
   try {
     // Return the file content if it exists
