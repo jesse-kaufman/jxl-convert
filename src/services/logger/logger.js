@@ -21,8 +21,8 @@ export default {
    * @param {string} msg - The message.
    * @returns {Promise<void>} Promise resolved.
    */
-  async success(msg) {
-    return await new Promise((resolve) => {
+  success(msg) {
+    return new Promise((resolve) => {
       logger.success(msg);
       resolve();
     });
@@ -34,8 +34,8 @@ export default {
    * @param {any} args - Additional arguments.
    * @returns {Promise<void>} Promise resolved.
    */
-  async error(msg, ...args) {
-    return await new Promise((resolve) => {
+  error(msg, ...args) {
+    return new Promise((resolve) => {
       logger.error(msg, ...args);
       resolve();
     });
@@ -47,8 +47,8 @@ export default {
    * @param {any} args - Additional arguments.
    * @returns {Promise<void>} Promise resolved.
    */
-  async warn(msg, ...args) {
-    return await new Promise((resolve) => {
+  warn(msg, ...args) {
+    return new Promise((resolve) => {
       logger.warn(msg, ...args);
       resolve();
     });
@@ -73,8 +73,8 @@ export default {
    * @param {any} args - Additional arguments.
    * @returns {Promise<void>} Promise resolved.
    */
-  async info(msg, ...args) {
-    return await new Promise((resolve) => {
+  info(msg, ...args) {
+    return new Promise((resolve) => {
       logger.info(msg, ...args);
       resolve();
     });
@@ -86,8 +86,8 @@ export default {
    * @param {any} args - Additional arguments.
    * @returns {Promise<void>} Promise resolved.
    */
-  async debug(msg, ...args) {
-    return await new Promise((resolve) => {
+  debug(msg, ...args) {
+    return new Promise((resolve) => {
       if (debug) logger.debug(`${msg}`, ...args);
       resolve();
     });
