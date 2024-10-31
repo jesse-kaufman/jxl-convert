@@ -17,8 +17,8 @@ export const syncMTimes = async (srcPath, destPath) => {
   // Get modification time of the destination file
   const destMTime = await getMTime(destPath);
 
-  log.debug(`${srcPath} modification time:\n\t${srcMTime.toString()}`);
-  log.debug(`${destPath} modification time:\n\t${destMTime.toString()}`);
+  log.debug(`${srcPath} modification time:\n  ${srcMTime.toString()}`);
+  log.debug(`${destPath} modification time:\n  ${destMTime.toString()}`);
 
   // If the modification times differ, update the out file modification
   if (srcMTime.getTime() !== destMTime.getTime()) {
