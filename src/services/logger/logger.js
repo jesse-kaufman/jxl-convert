@@ -8,6 +8,7 @@ import logger from "./utils/winston.js";
 
 /**
  * Wrapper object for winston logging library.
+ * @typedef {object} Logger
  * @property {Function} success - Log success message.
  * @property {Function} error - Log error message.
  * @property {Function} warning - Log warning message.

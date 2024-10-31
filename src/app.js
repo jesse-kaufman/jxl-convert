@@ -4,14 +4,31 @@ import setupInputDir from "./modules/input-dir.js";
 import setupInputFile from "./modules/input-file/input-file.js";
 import printSummary from "./services/summary/summary.js";
 import { createDir } from "./services/fs.js";
-import log from "./services/logger/logger.js";
+import logger from "./services/logger/logger.js";
 import { getInFilePath } from "./utils/path-utils.js";
 import { checkImageMagick } from "./services/imagemagick.js";
 
+/**
+ * Wrapper object for winston logging library.
+ * @typedef {object} Logger
+ * @property {Function} success - Log success message.
+ * @property {Function} error - Log error message.
+ * @property {Function} warning - Log warning message.
+ * @property {Function} notice - Log notice message.
+ * @property {Function} info - Log info message.
+ * @property {Function} debug - Log debug message.
+ */
+
 export default class App {
+  /**
+   * Static property holding logger object for logging.
+   * @type {Logger}
+   */
+  static log = logger;
+
   constructor() {
     // No op
-    log.info("Starting");
+    App.log.info("Starting");
   }
 
   /**
@@ -19,26 +36,26 @@ export default class App {
    */
   async run() {
     if (baseDir === "") {
-      log.error("Base directory not provided.");
+      App.log.error("Base directory not provided.");
       process.exit(1);
     }
 
     if (!(await checkImageMagick())) {
-      log.error("ImageMagick not found. Please install it and try again.");
+      App.log.error("ImageMagick not found. Please install it and try again.");
       process.exit(1);
     }
 
     // Create output directories if needed
-    log.debug("Initializing");
+    App.log.debug("Initializing");
     await initOutputDirs();
 
     // Recursively process the provided base directory
-    log.debug("Starting processing");
+    App.log.debug("Starting processing");
     await processDir(baseDir);
 
     // Print summary of completed conversion process
-    log.debug("Printing summary");
-    printSummary();
+    App.log.debug("Printing summary");
+    printSummary(App.log);
   }
 }
 
@@ -50,7 +67,7 @@ async function processDir(dir) {
   // Don't process base JXL or orig directories
   if (dir === jxlDir || dir === origDir) return;
 
-  log.notice(`Processing directory: ${dir} ...`);
+  App.log.notice(`Processing directory: ${dir} ...`);
 
   // Setup input directory object
   const inputDir = await setupInputDir(dir);
@@ -63,12 +80,12 @@ async function processDir(dir) {
 
   // Walk through list of files and sub-directories
   for (const item of inputDir.contents) {
-    log.info(`Directory item: ${item}`);
+    App.log.info(`Directory item: ${item}`);
     // eslint-disable-next-line no-await-in-loop
     await processPathItem(inputDir.inPath, item);
   }
 
-  log.notice(`Finished processing directory: ${dir}`);
+  App.log.notice(`Finished processing directory: ${dir}`);
 }
 
 /**
@@ -93,7 +110,7 @@ async function processPathItem(dir, item) {
     if (fileStat.isFile()) await processFile(itemPath);
   } catch (err) {
     // Return if an error occurred
-    if (err) log.error(`Error reading file: ${itemPath}`);
+    if (err) App.log.error(`Error reading file: ${itemPath}`);
   }
 }
 
@@ -107,7 +124,7 @@ async function processFile(filePath) {
   // Only process valid file types
   if (!inputFile.isValidFileType) return;
 
-  log.notice(`Processing file: ${filePath}`);
+  App.log.notice(`Processing file: ${filePath}`);
 
   // Convert to JXL
   await inputFile.convert();
@@ -120,7 +137,7 @@ async function processFile(filePath) {
  * Initializes the JXL and "orig" directories.
  */
 async function initOutputDirs() {
-  log.info("Initializing output directories.");
+  App.log.info("Initializing output directories.");
   await createDir(jxlDir);
   await createDir(origDir);
 }
