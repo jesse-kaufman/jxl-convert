@@ -61,8 +61,8 @@ export default {
    * @param {any} args - Additional arguments.
    * @returns {Promise<void>}
    */
-  async notice(msg, ...args) {
-    return await new Promise((resolve) => {
+  notice(msg, ...args) {
+    return new Promise((resolve) => {
       logger.notice(msg, ...args);
       resolve();
     });
