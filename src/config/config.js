@@ -86,7 +86,8 @@ export const imageQuality = configFileOpts.imageQuality || 80;
 async function getConfigOptions() {
   const configFile = await readConfigFile();
 
-  if (configFile === "") return {};
+  // If config file doesn't exist or is empty, return empty object
+  if (configFile == null) return {};
 
   try {
     // Parse the YAML content into an object
@@ -105,7 +106,7 @@ async function getConfigOptions() {
 
 /**
  * Reads configuration options from config file.
- * @returns {Promise<string>} - Contents of the config file.
+ * @returns {Promise<string|void>} - Contents of the config file.
  */
 async function readConfigFile() {
   const configFile = "./jxl-convert.config.yaml";
