@@ -4,7 +4,7 @@
  */
 
 import { debug } from "../../config/config.js";
-import logger from "./utils/winston.js";
+import logger from "./services/winston.js";
 
 /**
  * Wrapper object for winston logging library.
