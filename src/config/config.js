@@ -133,8 +133,6 @@ async function readConfigFile() {
     }
     log.error("Error reading config file:", err);
   }
-
-  return "";
 }
 
 /**
