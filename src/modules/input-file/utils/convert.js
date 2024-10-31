@@ -9,7 +9,7 @@ import log from "../../../services/logger/logger.js";
  * Converts input image to JXL using a quality setting of 75%.
  * @param {string} inFilePath - The path to the input image file.
  * @param {string} outFilePath - The path to the output image file.
- * @param {Object} imageQuality - Quality for ImageMagick conversion.
+ * @param {number} imageQuality - Quality for ImageMagick conversion.
  */
 export default (inFilePath, outFilePath, imageQuality) => {
   // Construct ImageMagick command to convert the image to JXL with a quality of 80%
