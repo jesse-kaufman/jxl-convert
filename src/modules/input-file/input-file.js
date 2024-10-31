@@ -26,7 +26,7 @@ import { syncMTimes } from "./utils/mtimes.js";
 /**
  * Sets up an input file object with properties and methods for processing.
  * @param {string} filePath - The path to the input file.
- * @returns {InputFile} - An input file object.
+ * @returns {InputFile} An input file object.
  */
 export default (filePath) => {
   const outPath = getOutDirPath(path.dirname(filePath));
@@ -62,7 +62,7 @@ export default (filePath) => {
 /**
  * Gets output filename for a given input filename.
  * @param {string} inFile - Input filename.
- * @returns {string} - Output filename.
+ * @returns {string} Output filename.
  */
 function getOutFileName(inFile) {
   const basename = path.basename(inFile, path.extname(inFile));
@@ -72,7 +72,7 @@ function getOutFileName(inFile) {
 /**
  * Checks whether file extension is listed as a valid file type.
  * @param {string} filePath - Path to file.
- * @returns {boolean} - True if file type is valid, otherwise false.
+ * @returns {boolean} True if file type is valid, otherwise false.
  */
 function isValidFileType(filePath) {
   return validFileExts.includes(path.extname(filePath).toLowerCase());
