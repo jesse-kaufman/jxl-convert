@@ -18,7 +18,6 @@ import { checkImageMagick } from "./services/imagemagick.js";
  * @property {Function} info - Log info message.
  * @property {Function} debug - Log debug message.
  */
-
 export default class App {
   /**
    * Static property holding logger object for logging.
