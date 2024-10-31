@@ -6,13 +6,23 @@ import {
   places,
   padding,
 } from "../../config/config.js";
-import log from "../logger/logger.js";
 import formatSize from "./utils/format-size.js";
 
 /**
- * Prints a summary of information about the completed conversion process.
+ * @typedef {object} Logger
+ * @property {Function} success - Log success message.
+ * @property {Function} error - Log error message.
+ * @property {Function} warning - Log warning message.
+ * @property {Function} notice - Log notice message.
+ * @property {Function} info - Log info message.
+ * @property {Function} debug - Log debug message.
  */
-export default async () => {
+
+/**
+ * Prints a summary of information about the completed conversion process.
+ * @param {Logger} log - Logging object
+ */
+export default async (log) => {
   const origDirSize = origDir ? await getFolderSize.loose(origDir) : 0;
   const jxlDirSize = jxlDir ? await getFolderSize.loose(jxlDir) : 0;
   const totalSaved = origDirSize - jxlDirSize;
