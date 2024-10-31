@@ -56,9 +56,17 @@ async function processDir(dir) {
   const inputDir = await setupInputDir(dir);
 
   // Walk through list of files and sub-directories
-  inputDir.contents.map((contentItem) =>
-    processPathItem(inputDir.inPath, contentItem)
-  );
+  /*inputDir.contents.map((contentItem) => {
+    log.info(`Directory item: ${contentItem}`);
+    return processPathItem(inputDir.inPath, contentItem);
+  });*/
+
+  // Walk through list of files and sub-directories
+  for (const item of inputDir.contents) {
+    log.info(`Directory item: ${item}`);
+    // eslint-disable-next-line no-await-in-loop
+    await processPathItem(inputDir.inPath, item);
+  }
 }
 
 /**
