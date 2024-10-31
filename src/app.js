@@ -67,6 +67,8 @@ async function processDir(dir) {
     // eslint-disable-next-line no-await-in-loop
     await processPathItem(inputDir.inPath, item);
   }
+
+  log.notice(`Finished processing directory: ${dir}`);
 }
 
 /**
