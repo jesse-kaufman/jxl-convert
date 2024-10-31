@@ -48,7 +48,7 @@ export default {
    * @param {any} args - Additional arguments.
    * @returns {Promise<void>} Promise resolved.
    */
-  warn(msg, ...args) {
+  warning(msg, ...args) {
     return new Promise((resolve) => {
       logger.warn(msg, ...args);
       resolve();
