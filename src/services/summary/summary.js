@@ -27,7 +27,7 @@ export default async (log) => {
   const jxlDirSize = jxlDir ? await getFolderSize.loose(jxlDir) : 0;
   const totalSaved = origDirSize - jxlDirSize;
 
-  log.info("\n\n");
+  log.info("");
   log.info("================================================================");
   log.notice(` JXL optimization results for ${baseDir}:`);
   log.info("================================================================");
