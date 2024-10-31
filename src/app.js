@@ -1,4 +1,3 @@
-import { execSync } from "child_process";
 import fsp from "node:fs/promises";
 import { baseDir, jxlDir, origDir } from "./config/config.js";
 import setupInputDir from "./modules/input-dir.js";
@@ -7,6 +6,7 @@ import printSummary from "./services/summary/summary.js";
 import { createDir } from "./services/fs.js";
 import log from "./services/logger/logger.js";
 import { getInFilePath } from "./utils/path-utils.js";
+import { checkImageMagick } from "./services/imagemagick.js";
 
 export default class App {
   constructor() {
@@ -23,7 +23,7 @@ export default class App {
       process.exit(1);
     }
 
-    if (!imageMagickExists()) {
+    if (!(await checkImageMagick())) {
       log.error("ImageMagick not found. Please install it and try again.");
       process.exit(1);
     }
@@ -123,19 +123,4 @@ async function initOutputDirs() {
   log.info("Initializing output directories.");
   await createDir(jxlDir);
   await createDir(origDir);
-}
-
-/**
- * Check if ImageMagick is available.
- * @returns {boolean} - True if ImageMagick is available.
- */
-function imageMagickExists() {
-  try {
-    execSync("magick -version", { stdio: "ignore" });
-    // eslint-disable-next-line no-unused-vars
-  } catch (err) {
-    return false;
-  }
-
-  return true;
 }

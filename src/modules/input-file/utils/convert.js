@@ -5,6 +5,7 @@
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import log from "../../../services/logger/logger.js";
+import { convert } from "../../../services/imagemagick.js";
 
 // Promisify exec function
 const execAsync = promisify(exec);
@@ -16,22 +17,25 @@ const execAsync = promisify(exec);
  * @param {number} imageQuality - Quality for ImageMagick conversion.
  */
 export default async (inFilePath, outFilePath, imageQuality) => {
-  // Construct ImageMagick command to convert the image to JXL with a quality of 80%
-  const command = `magick "${inFilePath}" -quality ${imageQuality} "${outFilePath}"`;
-  log.debug(command);
+  // Run conversion on file
+  const success = await convert(inFilePath, outFilePath, imageQuality);
 
-  try {
-    // Execute ImageMagick command to convert the image to JXL
-    await execAsync(command);
-    // Log success
+  if (success) {
     log.success(`SUCCESS!\nSaved JXL to ${outFilePath}`);
-  } catch (err) {
-    // If an error occurred, log the error message and throw the error
-    if (err instanceof Error) {
-      // Log error
-      log.error(`Error executing ImageMagick: ${err.message}`);
-      // Exit app
-      process.exit(1);
-    }
   }
+};
+
+/**
+ * Check if ImageMagick is available.
+ * @returns {Promise<boolean>} - True if ImageMagick is available.
+ */
+export const imageMagickExists = async () => {
+  try {
+    await execAsync("magick -version");
+    // eslint-disable-next-line no-unused-vars
+  } catch (err) {
+    return false;
+  }
+
+  return true;
 };
