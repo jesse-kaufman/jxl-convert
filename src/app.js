@@ -50,7 +50,7 @@ async function processDir(dir) {
   // Don't process base JXL or orig directories
   if (dir === jxlDir || dir === origDir) return;
 
-  log.notice(`Processing directory: ${dir}...`);
+  log.notice(`Processing directory: ${dir} ...`);
 
   // Setup input directory object
   const inputDir = await setupInputDir(dir);
