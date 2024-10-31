@@ -3,7 +3,7 @@
  * @module input-file
  */
 import path from "path";
-import { validFileExts } from "../../config/config.js";
+import { validFileExts, imageQuality } from "../../config/config.js";
 import log from "../../services/logger/logger.js";
 import { getOrigDirPath, getOutDirPath } from "../../utils/path-utils.js";
 import archiveOrigFile from "./utils/archive.js";
@@ -46,7 +46,7 @@ export default (filePath) => {
       log.debug(`Converting file: ${this.filePath}`);
 
       // Convert image to JXL
-      convertImage(this.filePath, this.outFilePath);
+      convertImage(this.filePath, this.outFilePath, imageQuality);
 
       // Sync modification time of new file with old file
       await syncMTimes(this.filePath, this.outFilePath);
