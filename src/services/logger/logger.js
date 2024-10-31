@@ -19,57 +19,77 @@ export default {
   /**
    * Logs a success message to the console in green color.
    * @param {string} msg - The message.
+   * @returns {Promise<void>} Promise resolved.
    */
-  success(msg) {
-    logger.success(msg);
+  async success(msg) {
+    return await new Promise((resolve) => {
+      logger.success(msg);
+      resolve();
+    });
   },
 
   /**
    * Logs an error message to the console in red color.
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
-   * @returns {void}
+   * @returns {Promise<void>} Promise resolved.
    */
-  error(msg, ...args) {
-    logger.error(msg, ...args);
+  async error(msg, ...args) {
+    return await new Promise((resolve) => {
+      logger.error(msg, ...args);
+      resolve();
+    });
   },
 
   /**
    * Logs a warning message to the console in yellow color.
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
-   * @returns {void}
+   * @returns {Promise<void>} Promise resolved.
    */
-  warn(msg, ...args) {
-    logger.warn(msg, ...args);
+  async warn(msg, ...args) {
+    return await new Promise((resolve) => {
+      logger.warn(msg, ...args);
+      resolve();
+    });
   },
 
   /**
    * Logs a highlighted message to the console.
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
-   * @returns {void}
+   * @returns {Promise<void>}
    */
-  notice(msg, ...args) {
-    logger.notice(msg, ...args);
+  async notice(msg, ...args) {
+    return await new Promise((resolve) => {
+      logger.notice(msg, ...args);
+      resolve();
+    });
   },
 
   /**
    * Logs a message to the console.
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
-   * @returns {void}
+   * @returns {Promise<void>} Promise resolved.
    */
-  info(msg, ...args) {
-    logger.info(msg, ...args);
+  async info(msg, ...args) {
+    return await new Promise((resolve) => {
+      logger.info(msg, ...args);
+      resolve();
+    });
   },
 
   /**
    * Logs a debug message to the console if debugging is enabled.
    * @param {string} msg - The message.
    * @param {any} args - Additional arguments.
+   * @returns {Promise<void>} Promise resolved.
    */
-  debug(msg, ...args) {
-    if (debug) logger.debug(`${msg}`, ...args);
+  async debug(msg, ...args) {
+    return await new Promise((resolve) => {
+      if (debug) logger.debug(`${msg}`, ...args);
+      resolve();
+    });
   },
 };
