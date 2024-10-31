@@ -87,10 +87,10 @@ async function processPathItem(dir, item) {
     const fileStat = await fsp.stat(itemPath);
 
     // If path is a directory, call processDir()
-    if (fileStat.isDirectory()) processDir(itemPath);
+    if (fileStat.isDirectory()) await processDir(itemPath);
 
     // If process the file, call processFile()
-    if (fileStat.isFile()) processFile(itemPath);
+    if (fileStat.isFile()) await processFile(itemPath);
   } catch (err) {
     // Return if an error occurred
     if (err) log.error(`Error reading file: ${itemPath}`);
@@ -101,7 +101,7 @@ async function processPathItem(dir, item) {
  * Processes a file and converts it into JXL if a valid image type.
  * @param {string} filePath - The path to the file to be processed.
  */
-function processFile(filePath) {
+async function processFile(filePath) {
   const inputFile = setupInputFile(filePath);
 
   // Only process valid file types
@@ -110,10 +110,10 @@ function processFile(filePath) {
   log.notice(`Processing file: ${filePath}`);
 
   // Convert to JXL
-  inputFile.convert();
+  await inputFile.convert();
 
   // Copy original file to the "orig" directory
-  inputFile.archiveOrigFile();
+  await inputFile.archiveOrigFile();
 }
 
 /**

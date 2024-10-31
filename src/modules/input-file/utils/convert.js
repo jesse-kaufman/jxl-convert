@@ -2,8 +2,12 @@
  * Utility to convert an image to JXL.
  * @module utils/convert
  */
-import { execSync } from "node:child_process";
+import { exec } from "node:child_process";
+import { promisify } from "node:util";
 import log from "../../../services/logger/logger.js";
+
+// Promisify exec function
+const execAsync = promisify(exec);
 
 /**
  * Converts input image to JXL using a quality setting of 75%.
@@ -11,14 +15,16 @@ import log from "../../../services/logger/logger.js";
  * @param {string} outFilePath - The path to the output image file.
  * @param {number} imageQuality - Quality for ImageMagick conversion.
  */
-export default (inFilePath, outFilePath, imageQuality) => {
+export default async (inFilePath, outFilePath, imageQuality) => {
   // Construct ImageMagick command to convert the image to JXL with a quality of 80%
   const command = `magick "${inFilePath}" -quality ${imageQuality} "${outFilePath}"`;
   log.debug(command);
 
   try {
     // Execute ImageMagick command to convert the image to JXL
-    execSync(command);
+    await execAsync(command);
+    // Log success
+    log.success(`SUCCESS!\nSaved JXL to ${outFilePath}`);
   } catch (err) {
     // If an error occurred, log the error message and throw the error
     if (err instanceof Error) {
@@ -28,6 +34,4 @@ export default (inFilePath, outFilePath, imageQuality) => {
       process.exit(1);
     }
   }
-
-  log.success(`SUCCESS!\nSaved JXL to ${outFilePath}`);
 };
