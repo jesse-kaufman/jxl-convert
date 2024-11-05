@@ -14,10 +14,11 @@ npm start [base_dir]
 
 ## To do
 
-- [ ] Make entire app asynchronous
-- [ ] Make options configurable
-  - [ ] Optimization level
-  - [ ] Path to ImageMagick binary in CLI arguments
-  - [ ] Valid filetypes
 - [ ] Allow setting options via CLI arguments
+- [ ] Rewrite to make processing loop asynchronous and process `X` number of files at a time
+- [x] Make basic functionality asynchronous
+- [x] Make options configurable
+  - [x] Optimization level
+  - [x] Path to ImageMagick binary
+  - [x] Valid filetypes
 - [x] Allow setting options via config file
